@@ -1,12 +1,14 @@
 """TimeSformer adapted for 3D OCT Volumetric Classification:
     https://github.com/facebookresearch/TimeSformer/blob/main/timesformer/models/vit.py"""
-
+from __future__ import annotations
 
 import torch
 import torch.nn as nn
 from functools import partial
 import torch.nn.functional as F
 from einops import rearrange
+from loguru import logger
+import timm
 
 def to_2tuple(x):
     return (x, x) if isinstance(x, int) else x
@@ -122,7 +124,8 @@ class PatchEmbed(nn.Module):
 
 class ViT3DClassifier(nn.Module):
     def __init__(self, img_size=224, patch_size=16, in_chans=1, num_classes=9, 
-                 embed_dim=768, depth=12, num_heads=12, num_frames=49, drop_rate=0.):
+                 embed_dim=768, depth=12, num_heads=12, num_frames=49, drop_rate=0.,
+                 pretrained=False, checkpoint_path=None):
         super().__init__()
         self.depth = depth
         self.num_classes = num_classes
@@ -156,6 +159,9 @@ class ViT3DClassifier(nn.Module):
         # Initialization of depth attention weights
         self.apply(self._init_weights)
 
+        if pretrained:
+            self.load_pretrained(checkpoint_path)
+
     def _init_weights(self, m):
         if isinstance(m, nn.Linear):
             torch.nn.init.trunc_normal_(m.weight, std=.02)
@@ -163,6 +169,51 @@ class ViT3DClassifier(nn.Module):
         elif isinstance(m, nn.LayerNorm):
             nn.init.constant_(m.bias, 0)
             nn.init.constant_(m.weight, 1.0)
+    
+    def load_pretrained(self, checkpoint_path:str =None):
+        """
+        Loads 2D ViT weights into the 3D model. 
+        If checkpoint_path is None, fetches official ImageNet weights from timm.
+        """
+        if checkpoint_path is None:
+            logger.info("No checkpoint path provided. Fetching pretrained timm vit_base_patch16_224...")
+            # Get the standard 2D ViT state_dict
+            pretrained_model = timm.create_model('vit_base_patch16_224', pretrained=True)
+            state_dict = pretrained_model.state_dict()
+
+        else:
+            logger.info(f"Loading weights from local checkpoint: {checkpoint_path}")
+            checkpoint = torch.load(checkpoint_path, map_location='cpu')
+            state_dict = checkpoint['model'] if 'model' in checkpoint else checkpoint
+
+       
+        # Filter out the head and the depth components. Handle the pos_embed size if necessary
+        own_state = self.state_dict()
+
+        loaded_keys = [] # Track loaded params
+        for name, param in state_dict.items():
+            if name in own_state:
+                # RGB to Grayscale
+                if name == 'patch_embed.proj.weight' and param.shape != own_state[name].shape:
+                    logger.info(f"Converting {name} from 3-channel to 1-channel.")
+                    # Average the weights across the RGB dimension: [768, 3, 16, 16] -> [768, 1, 16, 16]
+                    param = param.mean(dim=1, keepdim=True)
+                    own_state[name].copy_(param)
+                    loaded_keys.append(name)
+                    continue
+
+                # Handle the pos_embed
+                if param.shape == own_state[name].shape:
+                    own_state[name].copy_(param)
+                    loaded_keys.append(name)
+                else:
+                    logger.warning(f"Skipping {name} due to shape mismatch: {param.shape} vs {own_state[name].shape}")
+            else:
+                logger.debug(f"Skipping {name} (not in 3D model, likely a depth or head parameter)")
+
+        self.load_state_dict(own_state)
+        logger.info(f"Successfully loaded {len(loaded_keys)} spatial parameters from pretrained ViT.")
+
     def get_classifier(self):
         return self.head
 
@@ -224,7 +275,8 @@ if __name__ == "__main__":
         patch_size=16, 
         in_chans=1, 
         num_classes=9, 
-        num_frames=49
+        num_frames=49,
+        pretrained=True
     ).to(device)
 
     # Create a dummy input similar to train sample
