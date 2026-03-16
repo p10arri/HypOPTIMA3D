@@ -1,0 +1,38 @@
+name: vit
+
+encoder:
+  params:
+    encoder_version:  "vit_small_patch16_224.augreg_in21k"
+    emb_dim: 512
+    freeze: False
+    pretrained: False
+    clip_radius: 2.3
+    space: ${space.name}
+    encoder_variant: vit
+
+optimizer_params:
+    contrastive:
+      euclidean: 
+        lr_lp: 1e-3
+        lr_ft: 3e-5
+        lr: 1e-4
+      spherical:
+        lr_lp: 1e-3
+        lr_ft: 3e-5
+        lr: 1e-4
+      hyperbolic:
+        lr_lp: 1e-3
+        lr_ft: 3e-5
+        lr: 1e-4
+    
+
+# optimizer_params:
+#     supervised:
+#       euclidean: 3e-5
+#       spherical: 3e-5
+#       hyperbolic: 3e-5
+#     simsiam:
+#       euclidean: {'encoder': 2e-6, 'projector': 1e-5, 'predictor': 1e-4, 'riemann_head': 1e-5}
+#       spherical: {'encoder': 2e-6, 'projector': 1e-5, 'predictor': 1e-4, 'riemann_head': 1e-5}
+#       hyperbolic: {'encoder': 5e-6, 'projector': 2e-5, 'predictor': 1e-4, 'riemann_head': 5e-6}
+      

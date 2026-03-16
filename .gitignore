@@ -1,0 +1,15 @@
+.private/
+legacy/
+OPTIMA3D/processed/nineclasses3D/test/
+OPTIMA3D/processed/nineclasses3D/val/
+OPTIMA3D/processed/nineclasses3D/train/
+wandb/
+
+# Ignore hydra configs and models
+results/**/.hydra/hydra.yaml
+results/**/.hydra/overrides.yaml
+results/**/models/
+results/**/main.log
+
+
+

@@ -1,0 +1,616 @@
+2026-03-16 19:46:49,401 | INFO | Starting dataset analysis
+2026-03-16 19:46:49,401 | ERROR | CRITICAL: Full dataset not found at src/.private/OPTIMA_15abr_all_vendors.csv. Vendor analysis will fail.
+2026-03-16 19:47:19,898 | INFO | Starting dataset analysis
+2026-03-16 19:47:19,899 | INFO | Loading FULL dataset: .private/OPTIMA_15abr_all_vendors.csv
+2026-03-16 19:47:19,920 | INFO | Full dataset samples: 4766
+2026-03-16 19:47:19,926 | INFO | Loading train: OPTIMA3D/processed/nineclasses3D/train.csv
+2026-03-16 19:47:19,938 | INFO | train samples: 3217
+2026-03-16 19:47:19,943 | INFO | ======================================================================
+2026-03-16 19:47:19,943 | INFO | ANALYZING TRAIN
+2026-03-16 19:47:19,943 | INFO | ======================================================================
+2026-03-16 19:47:19,943 | INFO | --- TRAIN : BASIC STATS ---
+2026-03-16 19:47:19,944 | INFO | Samples   : 3217
+2026-03-16 19:47:19,944 | INFO | Patients  : 3217
+2026-03-16 19:47:19,944 | INFO | Classes   : 9
+2026-03-16 19:47:19,944 | INFO | --- TRAIN : CLASS DISTRIBUTION ---
+2026-03-16 19:47:19,949 | INFO | 
+           samples  percentage
+label                         
+cnv1            64        1.99
+cnv2            56        1.74
+cnv3           191        5.94
+dme            736       22.88
+ga             300        9.33
+healthy        505       15.70
+iamd           764       23.75
+rvo            517       16.07
+stargardt       84        2.61
+2026-03-16 19:47:20,418 | INFO | --- TRAIN : PATIENTS PER CLASS ---
+2026-03-16 19:47:20,428 | INFO | 
+label
+cnv1          64
+cnv2          56
+cnv3         191
+dme          736
+ga           300
+healthy      505
+iamd         764
+rvo          517
+stargardt     84
+Name: FileSetId, dtype: int64
+2026-03-16 19:47:20,732 | INFO | --- TRAIN : SLICE STATS ---
+2026-03-16 19:47:20,733 | INFO |      min: 25.00
+2026-03-16 19:47:20,733 | INFO |      max: 25.00
+2026-03-16 19:47:20,733 | INFO |     mean: 25.00
+2026-03-16 19:47:20,734 | INFO |   median: 25.00
+2026-03-16 19:47:20,734 | INFO |      std: 0.00
+2026-03-16 19:47:21,404 | INFO | 
+Slice stats per class:
+2026-03-16 19:47:21,413 | INFO | 
+           min  max  mean  median  std
+label                                 
+cnv1        25   25  25.0    25.0  0.0
+cnv2        25   25  25.0    25.0  0.0
+cnv3        25   25  25.0    25.0  0.0
+dme         25   25  25.0    25.0  0.0
+ga          25   25  25.0    25.0  0.0
+healthy     25   25  25.0    25.0  0.0
+iamd        25   25  25.0    25.0  0.0
+rvo         25   25  25.0    25.0  0.0
+stargardt   25   25  25.0    25.0  0.0
+2026-03-16 19:47:21,801 | INFO | --- TRAIN : VENDOR/BIAS ANALYSIS ---
+2026-03-16 19:47:21,852 | INFO | 
+label                      cnv1  cnv2  cnv3  dme   ga  healthy  iamd  rvo  stargardt
+vendor                                                                              
+NORMATIVE_AGING               0     0     0    0    0      382     0    0          0
+OPTDATA12                     0     0    63   26    0        0     0   67          0
+OPTDATA2                      0     0     0    0    0        0     0  275          0
+OPTDATA3                      0     0     0    0    0        0     0  175          0
+OPTDATABCCIRR                 0     0     7    0    0        0     0    0          0
+OPTDATABCSPEC                 0     0    27    0  106        0     0    0          0
+OPTDATABCTOP                  0     0     4    0    0        0     0    0          0
+OPTDATADRCR                   0     0     0  410    0        0     0    0          0
+OPTDATAHARBOR                 0     0     0    0    0       45   379    0          0
+OPTDATAHAWK                  64    56    87    0    0        0     0    0          0
+OPTDATAMELBOURNE              0     0     0    0    0        0   211    0          0
+OPTDATAOCTAVECIRR             0     0     2    0    0        0     0    0          0
+OPTDATAOCTAVENIDEK            0     0     1    0    0        0     0    0          0
+OPTDATASTARGARDTDISTROPHY     0     0     0    0    0        0     0    0         84
+OPTDATAVIVID                  0     0     0  300    0        0     0    0          0
+OPTDATA_FILLY                 0     0     0    0  194        0     0    0          0
+OPTDATA_FLAME                 0     0     0    0    0       78     0    0          0
+OPTDATA_VSC_DryAMD2           0     0     0    0    0        0   174    0          0
+2026-03-16 19:47:22,966 | INFO | --- TRAIN : 3D SCAN CONSISTENCY ---
+2026-03-16 19:47:22,969 | WARNING | Found 3217 scans with < 49 frames.
+2026-03-16 19:47:22,970 | INFO | Small scans distribution:
+label
+iamd         764
+dme          736
+rvo          517
+healthy      505
+ga           300
+cnv3         191
+stargardt     84
+cnv1          64
+cnv2          56
+Name: count, dtype: int64
+2026-03-16 19:47:22,990 | INFO | Loading val: OPTIMA3D/processed/nineclasses3D/val.csv
+2026-03-16 19:47:23,005 | INFO | val samples: 1192
+2026-03-16 19:47:23,007 | INFO | ======================================================================
+2026-03-16 19:47:23,008 | INFO | ANALYZING VAL
+2026-03-16 19:47:23,008 | INFO | ======================================================================
+2026-03-16 19:47:23,008 | INFO | --- VAL : BASIC STATS ---
+2026-03-16 19:47:23,008 | INFO | Samples   : 1192
+2026-03-16 19:47:23,008 | INFO | Patients  : 1192
+2026-03-16 19:47:23,008 | INFO | Classes   : 9
+2026-03-16 19:47:23,008 | INFO | --- VAL : CLASS DISTRIBUTION ---
+2026-03-16 19:47:23,013 | INFO | 
+           samples  percentage
+label                         
+cnv1            25        2.10
+cnv2            21        1.76
+cnv3            69        5.79
+dme            273       22.90
+ga             113        9.48
+healthy        186       15.60
+iamd           282       23.66
+rvo            190       15.94
+stargardt       33        2.77
+2026-03-16 19:47:23,210 | INFO | --- VAL : PATIENTS PER CLASS ---
+2026-03-16 19:47:23,212 | INFO | 
+label
+cnv1          25
+cnv2          21
+cnv3          69
+dme          273
+ga           113
+healthy      186
+iamd         282
+rvo          190
+stargardt     33
+Name: FileSetId, dtype: int64
+2026-03-16 19:47:23,709 | INFO | --- VAL : SLICE STATS ---
+2026-03-16 19:47:23,710 | INFO |      min: 25.00
+2026-03-16 19:47:23,711 | INFO |      max: 25.00
+2026-03-16 19:47:23,711 | INFO |     mean: 25.00
+2026-03-16 19:47:23,711 | INFO |   median: 25.00
+2026-03-16 19:47:23,711 | INFO |      std: 0.00
+2026-03-16 19:47:23,992 | INFO | 
+Slice stats per class:
+2026-03-16 19:47:23,999 | INFO | 
+           min  max  mean  median  std
+label                                 
+cnv1        25   25  25.0    25.0  0.0
+cnv2        25   25  25.0    25.0  0.0
+cnv3        25   25  25.0    25.0  0.0
+dme         25   25  25.0    25.0  0.0
+ga          25   25  25.0    25.0  0.0
+healthy     25   25  25.0    25.0  0.0
+iamd        25   25  25.0    25.0  0.0
+rvo         25   25  25.0    25.0  0.0
+stargardt   25   25  25.0    25.0  0.0
+2026-03-16 19:47:24,309 | INFO | --- VAL : VENDOR/BIAS ANALYSIS ---
+2026-03-16 19:47:24,324 | INFO | 
+label                      cnv1  cnv2  cnv3  dme  ga  healthy  iamd  rvo  stargardt
+vendor                                                                             
+NORMATIVE_AGING               0     0     0    0   0      144     0    0          0
+OPTDATA12                     0     0    20   10   0        0     0   31          0
+OPTDATA2                      0     0     0    0   0        0     0  101          0
+OPTDATA3                      0     0     0    0   0        0     0   58          0
+OPTDATABCCIRR                 0     0     2    0   0        0     0    0          0
+OPTDATABCSPEC                 0     0     7    0  37        0     0    0          0
+OPTDATABCTOP                  0     0     2    0   0        0     0    0          0
+OPTDATADRCR                   0     0     0  152   0        0     0    0          0
+OPTDATAHARBOR                 0     0     0    0   0       10   134    0          0
+OPTDATAHAWK                  25    21    37    0   0        0     0    0          0
+OPTDATAMELBOURNE              0     0     0    0   0        0    83    0          0
+OPTDATAOCTAVESPEC             0     0     1    0   0        0     0    0          0
+OPTDATASTARGARDTDISTROPHY     0     0     0    0   0        0     0    0         33
+OPTDATAVIVID                  0     0     0  111   0        0     0    0          0
+OPTDATA_FILLY                 0     0     0    0  76        0     0    0          0
+OPTDATA_FLAME                 0     0     0    0   0       32     0    0          0
+OPTDATA_VSC_DryAMD2           0     0     0    0   0        0    65    0          0
+2026-03-16 19:47:25,264 | INFO | --- VAL : 3D SCAN CONSISTENCY ---
+2026-03-16 19:47:25,270 | WARNING | Found 1192 scans with < 49 frames.
+2026-03-16 19:47:25,273 | INFO | Small scans distribution:
+label
+iamd         282
+dme          273
+rvo          190
+healthy      186
+ga           113
+cnv3          69
+stargardt     33
+cnv1          25
+cnv2          21
+Name: count, dtype: int64
+2026-03-16 19:47:25,274 | INFO | Loading test: OPTIMA3D/processed/nineclasses3D/test.csv
+2026-03-16 19:47:25,281 | INFO | test samples: 357
+2026-03-16 19:47:25,285 | INFO | ======================================================================
+2026-03-16 19:47:25,285 | INFO | ANALYZING TEST
+2026-03-16 19:47:25,285 | INFO | ======================================================================
+2026-03-16 19:47:25,285 | INFO | --- TEST : BASIC STATS ---
+2026-03-16 19:47:25,286 | INFO | Samples   : 357
+2026-03-16 19:47:25,286 | INFO | Patients  : 357
+2026-03-16 19:47:25,286 | INFO | Classes   : 9
+2026-03-16 19:47:25,286 | INFO | --- TEST : CLASS DISTRIBUTION ---
+2026-03-16 19:47:25,292 | INFO | 
+           samples  percentage
+label                         
+cnv1            10        2.80
+cnv2             6        1.68
+cnv3            16        4.48
+dme             82       22.97
+ga              39       10.92
+healthy         54       15.13
+iamd            81       22.69
+rvo             56       15.69
+stargardt       13        3.64
+2026-03-16 19:47:25,987 | INFO | --- TEST : PATIENTS PER CLASS ---
+2026-03-16 19:47:25,991 | INFO | 
+label
+cnv1         10
+cnv2          6
+cnv3         16
+dme          82
+ga           39
+healthy      54
+iamd         81
+rvo          56
+stargardt    13
+Name: FileSetId, dtype: int64
+2026-03-16 19:47:26,480 | INFO | --- TEST : SLICE STATS ---
+2026-03-16 19:47:26,481 | INFO |      min: 25.00
+2026-03-16 19:47:26,481 | INFO |      max: 25.00
+2026-03-16 19:47:26,481 | INFO |     mean: 25.00
+2026-03-16 19:47:26,481 | INFO |   median: 25.00
+2026-03-16 19:47:26,481 | INFO |      std: 0.00
+2026-03-16 19:47:26,829 | INFO | 
+Slice stats per class:
+2026-03-16 19:47:26,838 | INFO | 
+           min  max  mean  median  std
+label                                 
+cnv1        25   25  25.0    25.0  0.0
+cnv2        25   25  25.0    25.0  0.0
+cnv3        25   25  25.0    25.0  0.0
+dme         25   25  25.0    25.0  0.0
+ga          25   25  25.0    25.0  0.0
+healthy     25   25  25.0    25.0  0.0
+iamd        25   25  25.0    25.0  0.0
+rvo         25   25  25.0    25.0  0.0
+stargardt   25   25  25.0    25.0  0.0
+2026-03-16 19:47:27,341 | INFO | --- TEST : VENDOR/BIAS ANALYSIS ---
+2026-03-16 19:47:27,354 | INFO | 
+label                      cnv1  cnv2  cnv3  dme  ga  healthy  iamd  rvo  stargardt
+vendor                                                                             
+NORMATIVE_AGING               0     0     0    0   0       39     0    0          0
+OPTDATA12                     0     0     9    3   0        0     0    8          0
+OPTDATA2                      0     0     0    0   0        0     0   29          0
+OPTDATA3                      0     0     0    0   0        0     0   19          0
+OPTDATABCCIRR                 0     0     1    0   0        0     0    0          0
+OPTDATABCSPEC                 0     0     1    0  15        0     0    0          0
+OPTDATADRCR                   0     0     0   41   0        0     0    0          0
+OPTDATAHARBOR                 0     0     0    0   0        6    48    0          0
+OPTDATAHAWK                  10     6     5    0   0        0     0    0          0
+OPTDATAMELBOURNE              0     0     0    0   0        0    18    0          0
+OPTDATASTARGARDTDISTROPHY     0     0     0    0   0        0     0    0         13
+OPTDATAVIVID                  0     0     0   38   0        0     0    0          0
+OPTDATA_FILLY                 0     0     0    0  24        0     0    0          0
+OPTDATA_FLAME                 0     0     0    0   0        9     0    0          0
+OPTDATA_VSC_DryAMD2           0     0     0    0   0        0    15    0          0
+2026-03-16 19:47:28,160 | INFO | --- TEST : 3D SCAN CONSISTENCY ---
+2026-03-16 19:47:28,162 | WARNING | Found 357 scans with < 49 frames.
+2026-03-16 19:47:28,163 | INFO | Small scans distribution:
+label
+dme          82
+iamd         81
+rvo          56
+healthy      54
+ga           39
+cnv3         16
+stargardt    13
+cnv1         10
+cnv2          6
+Name: count, dtype: int64
+2026-03-16 19:47:28,164 | INFO | ======================================================================
+2026-03-16 19:47:28,164 | INFO | CHECKING FOR DATA LEAKAGE
+2026-03-16 19:47:28,164 | INFO | ======================================================================
+2026-03-16 19:47:28,166 | INFO | CLEAN: No patient overlap found between splits. Data is scientifically valid.
+2026-03-16 19:47:28,166 | INFO | ======================================================================
+2026-03-16 19:47:28,166 | INFO | FINAL FULL DATASET SUMMARY
+2026-03-16 19:47:28,166 | INFO | --- FULL : BASIC STATS ---
+2026-03-16 19:47:28,168 | INFO | Samples   : 4766
+2026-03-16 19:47:28,168 | INFO | Patients  : 4766
+2026-03-16 19:47:28,168 | INFO | Classes   : 9
+2026-03-16 19:47:28,169 | INFO | --- FULL : VENDOR/BIAS ANALYSIS ---
+2026-03-16 19:47:28,181 | INFO | 
+label                      cnv1  cnv2  cnv3  dme   ga  healthy  iamd  rvo  stargardt
+vendor                                                                              
+NORMATIVE_AGING               0     0     0    0    0      565     0    0          0
+OPTDATA12                     0     0    92   39    0        0     0  106          0
+OPTDATA2                      0     0     0    0    0        0     0  405          0
+OPTDATA3                      0     0     0    0    0        0     0  252          0
+OPTDATABCCIRR                 0     0    10    0    0        0     0    0          0
+OPTDATABCSPEC                 0     0    35    0  158        0     0    0          0
+OPTDATABCTOP                  0     0     6    0    0        0     0    0          0
+OPTDATADRCR                   0     0     0  603    0        0     0    0          0
+OPTDATAHARBOR                 0     0     0    0    0       61   561    0          0
+OPTDATAHAWK                  99    83   129    0    0        0     0    0          0
+OPTDATAMELBOURNE              0     0     0    0    0        0   312    0          0
+OPTDATAOCTAVECIRR             0     0     2    0    0        0     0    0          0
+OPTDATAOCTAVENIDEK            0     0     1    0    0        0     0    0          0
+OPTDATAOCTAVESPEC             0     0     1    0    0        0     0    0          0
+OPTDATASTARGARDTDISTROPHY     0     0     0    0    0        0     0    0        130
+OPTDATAVIVID                  0     0     0  449    0        0     0    0          0
+OPTDATA_FILLY                 0     0     0    0  294        0     0    0          0
+OPTDATA_FLAME                 0     0     0    0    0      119     0    0          0
+OPTDATA_VSC_DryAMD2           0     0     0    0    0        0   254    0          0
+2026-03-16 19:47:29,047 | INFO | All analyses completed
+2026-03-16 19:47:29,047 | INFO | Outputs saved to: ./OPTIMA3D/analysis
+2026-03-16 19:47:55,352 | INFO | Starting dataset analysis
+2026-03-16 19:47:55,353 | INFO | Loading FULL dataset: .private/OPTIMA_15abr_all_vendors.csv
+2026-03-16 19:47:55,372 | INFO | Full dataset samples: 4766
+2026-03-16 19:47:55,377 | INFO | Loading train: OPTIMA3D/processed/nineclasses3D/train.csv
+2026-03-16 19:47:55,389 | INFO | train samples: 3217
+2026-03-16 19:47:55,391 | INFO | ======================================================================
+2026-03-16 19:47:55,391 | INFO | ANALYZING TRAIN
+2026-03-16 19:47:55,392 | INFO | ======================================================================
+2026-03-16 19:47:55,392 | INFO | --- TRAIN : BASIC STATS ---
+2026-03-16 19:47:55,393 | INFO | Samples   : 3217
+2026-03-16 19:47:55,393 | INFO | Patients  : 3217
+2026-03-16 19:47:55,393 | INFO | Classes   : 9
+2026-03-16 19:47:55,393 | INFO | --- TRAIN : CLASS DISTRIBUTION ---
+2026-03-16 19:47:55,398 | INFO | 
+           samples  percentage
+label                         
+cnv1            64        1.99
+cnv2            56        1.74
+cnv3           191        5.94
+dme            736       22.88
+ga             300        9.33
+healthy        505       15.70
+iamd           764       23.75
+rvo            517       16.07
+stargardt       84        2.61
+2026-03-16 19:47:55,620 | INFO | --- TRAIN : PATIENTS PER CLASS ---
+2026-03-16 19:47:55,622 | INFO | 
+label
+cnv1          64
+cnv2          56
+cnv3         191
+dme          736
+ga           300
+healthy      505
+iamd         764
+rvo          517
+stargardt     84
+Name: FileSetId, dtype: int64
+2026-03-16 19:47:55,824 | INFO | --- TRAIN : SLICE STATS ---
+2026-03-16 19:47:55,825 | INFO |      min: 25.00
+2026-03-16 19:47:55,825 | INFO |      max: 25.00
+2026-03-16 19:47:55,825 | INFO |     mean: 25.00
+2026-03-16 19:47:55,825 | INFO |   median: 25.00
+2026-03-16 19:47:55,825 | INFO |      std: 0.00
+2026-03-16 19:47:56,088 | INFO | 
+Slice stats per class:
+2026-03-16 19:47:56,092 | INFO | 
+           min  max  mean  median  std
+label                                 
+cnv1        25   25  25.0    25.0  0.0
+cnv2        25   25  25.0    25.0  0.0
+cnv3        25   25  25.0    25.0  0.0
+dme         25   25  25.0    25.0  0.0
+ga          25   25  25.0    25.0  0.0
+healthy     25   25  25.0    25.0  0.0
+iamd        25   25  25.0    25.0  0.0
+rvo         25   25  25.0    25.0  0.0
+stargardt   25   25  25.0    25.0  0.0
+2026-03-16 19:47:56,290 | INFO | --- TRAIN : VENDOR/BIAS ANALYSIS ---
+2026-03-16 19:47:56,300 | INFO | 
+label                      cnv1  cnv2  cnv3  dme   ga  healthy  iamd  rvo  stargardt
+vendor                                                                              
+NORMATIVE_AGING               0     0     0    0    0      382     0    0          0
+OPTDATA12                     0     0    63   26    0        0     0   67          0
+OPTDATA2                      0     0     0    0    0        0     0  275          0
+OPTDATA3                      0     0     0    0    0        0     0  175          0
+OPTDATABCCIRR                 0     0     7    0    0        0     0    0          0
+OPTDATABCSPEC                 0     0    27    0  106        0     0    0          0
+OPTDATABCTOP                  0     0     4    0    0        0     0    0          0
+OPTDATADRCR                   0     0     0  410    0        0     0    0          0
+OPTDATAHARBOR                 0     0     0    0    0       45   379    0          0
+OPTDATAHAWK                  64    56    87    0    0        0     0    0          0
+OPTDATAMELBOURNE              0     0     0    0    0        0   211    0          0
+OPTDATAOCTAVECIRR             0     0     2    0    0        0     0    0          0
+OPTDATAOCTAVENIDEK            0     0     1    0    0        0     0    0          0
+OPTDATASTARGARDTDISTROPHY     0     0     0    0    0        0     0    0         84
+OPTDATAVIVID                  0     0     0  300    0        0     0    0          0
+OPTDATA_FILLY                 0     0     0    0  194        0     0    0          0
+OPTDATA_FLAME                 0     0     0    0    0       78     0    0          0
+OPTDATA_VSC_DryAMD2           0     0     0    0    0        0   174    0          0
+2026-03-16 19:47:57,001 | INFO | --- TRAIN : 3D SCAN CONSISTENCY ---
+2026-03-16 19:47:57,003 | WARNING | Found 3217 scans with < 49 frames.
+2026-03-16 19:47:57,004 | INFO | Small scans distribution:
+label
+iamd         764
+dme          736
+rvo          517
+healthy      505
+ga           300
+cnv3         191
+stargardt     84
+cnv1          64
+cnv2          56
+Name: count, dtype: int64
+2026-03-16 19:47:57,004 | INFO | Loading val: OPTIMA3D/processed/nineclasses3D/val.csv
+2026-03-16 19:47:57,009 | INFO | val samples: 1192
+2026-03-16 19:47:57,012 | INFO | ======================================================================
+2026-03-16 19:47:57,012 | INFO | ANALYZING VAL
+2026-03-16 19:47:57,012 | INFO | ======================================================================
+2026-03-16 19:47:57,012 | INFO | --- VAL : BASIC STATS ---
+2026-03-16 19:47:57,012 | INFO | Samples   : 1192
+2026-03-16 19:47:57,013 | INFO | Patients  : 1192
+2026-03-16 19:47:57,013 | INFO | Classes   : 9
+2026-03-16 19:47:57,013 | INFO | --- VAL : CLASS DISTRIBUTION ---
+2026-03-16 19:47:57,016 | INFO | 
+           samples  percentage
+label                         
+cnv1            25        2.10
+cnv2            21        1.76
+cnv3            69        5.79
+dme            273       22.90
+ga             113        9.48
+healthy        186       15.60
+iamd           282       23.66
+rvo            190       15.94
+stargardt       33        2.77
+2026-03-16 19:47:57,241 | INFO | --- VAL : PATIENTS PER CLASS ---
+2026-03-16 19:47:57,243 | INFO | 
+label
+cnv1          25
+cnv2          21
+cnv3          69
+dme          273
+ga           113
+healthy      186
+iamd         282
+rvo          190
+stargardt     33
+Name: FileSetId, dtype: int64
+2026-03-16 19:47:57,415 | INFO | --- VAL : SLICE STATS ---
+2026-03-16 19:47:57,415 | INFO |      min: 25.00
+2026-03-16 19:47:57,415 | INFO |      max: 25.00
+2026-03-16 19:47:57,415 | INFO |     mean: 25.00
+2026-03-16 19:47:57,415 | INFO |   median: 25.00
+2026-03-16 19:47:57,415 | INFO |      std: 0.00
+2026-03-16 19:47:57,583 | INFO | 
+Slice stats per class:
+2026-03-16 19:47:57,588 | INFO | 
+           min  max  mean  median  std
+label                                 
+cnv1        25   25  25.0    25.0  0.0
+cnv2        25   25  25.0    25.0  0.0
+cnv3        25   25  25.0    25.0  0.0
+dme         25   25  25.0    25.0  0.0
+ga          25   25  25.0    25.0  0.0
+healthy     25   25  25.0    25.0  0.0
+iamd        25   25  25.0    25.0  0.0
+rvo         25   25  25.0    25.0  0.0
+stargardt   25   25  25.0    25.0  0.0
+2026-03-16 19:47:57,775 | INFO | --- VAL : VENDOR/BIAS ANALYSIS ---
+2026-03-16 19:47:57,783 | INFO | 
+label                      cnv1  cnv2  cnv3  dme  ga  healthy  iamd  rvo  stargardt
+vendor                                                                             
+NORMATIVE_AGING               0     0     0    0   0      144     0    0          0
+OPTDATA12                     0     0    20   10   0        0     0   31          0
+OPTDATA2                      0     0     0    0   0        0     0  101          0
+OPTDATA3                      0     0     0    0   0        0     0   58          0
+OPTDATABCCIRR                 0     0     2    0   0        0     0    0          0
+OPTDATABCSPEC                 0     0     7    0  37        0     0    0          0
+OPTDATABCTOP                  0     0     2    0   0        0     0    0          0
+OPTDATADRCR                   0     0     0  152   0        0     0    0          0
+OPTDATAHARBOR                 0     0     0    0   0       10   134    0          0
+OPTDATAHAWK                  25    21    37    0   0        0     0    0          0
+OPTDATAMELBOURNE              0     0     0    0   0        0    83    0          0
+OPTDATAOCTAVESPEC             0     0     1    0   0        0     0    0          0
+OPTDATASTARGARDTDISTROPHY     0     0     0    0   0        0     0    0         33
+OPTDATAVIVID                  0     0     0  111   0        0     0    0          0
+OPTDATA_FILLY                 0     0     0    0  76        0     0    0          0
+OPTDATA_FLAME                 0     0     0    0   0       32     0    0          0
+OPTDATA_VSC_DryAMD2           0     0     0    0   0        0    65    0          0
+2026-03-16 19:47:58,401 | INFO | --- VAL : 3D SCAN CONSISTENCY ---
+2026-03-16 19:47:58,401 | WARNING | Found 1192 scans with < 49 frames.
+2026-03-16 19:47:58,402 | INFO | Small scans distribution:
+label
+iamd         282
+dme          273
+rvo          190
+healthy      186
+ga           113
+cnv3          69
+stargardt     33
+cnv1          25
+cnv2          21
+Name: count, dtype: int64
+2026-03-16 19:47:58,403 | INFO | Loading test: OPTIMA3D/processed/nineclasses3D/test.csv
+2026-03-16 19:47:58,405 | INFO | test samples: 357
+2026-03-16 19:47:58,407 | INFO | ======================================================================
+2026-03-16 19:47:58,407 | INFO | ANALYZING TEST
+2026-03-16 19:47:58,407 | INFO | ======================================================================
+2026-03-16 19:47:58,407 | INFO | --- TEST : BASIC STATS ---
+2026-03-16 19:47:58,408 | INFO | Samples   : 357
+2026-03-16 19:47:58,408 | INFO | Patients  : 357
+2026-03-16 19:47:58,408 | INFO | Classes   : 9
+2026-03-16 19:47:58,408 | INFO | --- TEST : CLASS DISTRIBUTION ---
+2026-03-16 19:47:58,411 | INFO | 
+           samples  percentage
+label                         
+cnv1            10        2.80
+cnv2             6        1.68
+cnv3            16        4.48
+dme             82       22.97
+ga              39       10.92
+healthy         54       15.13
+iamd            81       22.69
+rvo             56       15.69
+stargardt       13        3.64
+2026-03-16 19:47:58,595 | INFO | --- TEST : PATIENTS PER CLASS ---
+2026-03-16 19:47:58,596 | INFO | 
+label
+cnv1         10
+cnv2          6
+cnv3         16
+dme          82
+ga           39
+healthy      54
+iamd         81
+rvo          56
+stargardt    13
+Name: FileSetId, dtype: int64
+2026-03-16 19:47:58,780 | INFO | --- TEST : SLICE STATS ---
+2026-03-16 19:47:58,780 | INFO |      min: 25.00
+2026-03-16 19:47:58,780 | INFO |      max: 25.00
+2026-03-16 19:47:58,780 | INFO |     mean: 25.00
+2026-03-16 19:47:58,780 | INFO |   median: 25.00
+2026-03-16 19:47:58,780 | INFO |      std: 0.00
+2026-03-16 19:47:58,967 | INFO | 
+Slice stats per class:
+2026-03-16 19:47:58,973 | INFO | 
+           min  max  mean  median  std
+label                                 
+cnv1        25   25  25.0    25.0  0.0
+cnv2        25   25  25.0    25.0  0.0
+cnv3        25   25  25.0    25.0  0.0
+dme         25   25  25.0    25.0  0.0
+ga          25   25  25.0    25.0  0.0
+healthy     25   25  25.0    25.0  0.0
+iamd        25   25  25.0    25.0  0.0
+rvo         25   25  25.0    25.0  0.0
+stargardt   25   25  25.0    25.0  0.0
+2026-03-16 19:47:59,473 | INFO | --- TEST : VENDOR/BIAS ANALYSIS ---
+2026-03-16 19:47:59,484 | INFO | 
+label                      cnv1  cnv2  cnv3  dme  ga  healthy  iamd  rvo  stargardt
+vendor                                                                             
+NORMATIVE_AGING               0     0     0    0   0       39     0    0          0
+OPTDATA12                     0     0     9    3   0        0     0    8          0
+OPTDATA2                      0     0     0    0   0        0     0   29          0
+OPTDATA3                      0     0     0    0   0        0     0   19          0
+OPTDATABCCIRR                 0     0     1    0   0        0     0    0          0
+OPTDATABCSPEC                 0     0     1    0  15        0     0    0          0
+OPTDATADRCR                   0     0     0   41   0        0     0    0          0
+OPTDATAHARBOR                 0     0     0    0   0        6    48    0          0
+OPTDATAHAWK                  10     6     5    0   0        0     0    0          0
+OPTDATAMELBOURNE              0     0     0    0   0        0    18    0          0
+OPTDATASTARGARDTDISTROPHY     0     0     0    0   0        0     0    0         13
+OPTDATAVIVID                  0     0     0   38   0        0     0    0          0
+OPTDATA_FILLY                 0     0     0    0  24        0     0    0          0
+OPTDATA_FLAME                 0     0     0    0   0        9     0    0          0
+OPTDATA_VSC_DryAMD2           0     0     0    0   0        0    15    0          0
+2026-03-16 19:48:00,137 | INFO | --- TEST : 3D SCAN CONSISTENCY ---
+2026-03-16 19:48:00,138 | WARNING | Found 357 scans with < 49 frames.
+2026-03-16 19:48:00,139 | INFO | Small scans distribution:
+label
+dme          82
+iamd         81
+rvo          56
+healthy      54
+ga           39
+cnv3         16
+stargardt    13
+cnv1         10
+cnv2          6
+Name: count, dtype: int64
+2026-03-16 19:48:00,139 | INFO | ======================================================================
+2026-03-16 19:48:00,139 | INFO | CHECKING FOR DATA LEAKAGE
+2026-03-16 19:48:00,139 | INFO | ======================================================================
+2026-03-16 19:48:00,140 | INFO | CLEAN: No patient overlap found between splits. Data is valid.
+2026-03-16 19:48:00,141 | INFO | ======================================================================
+2026-03-16 19:48:00,141 | INFO | FINAL FULL DATASET SUMMARY
+2026-03-16 19:48:00,141 | INFO | --- FULL : BASIC STATS ---
+2026-03-16 19:48:00,143 | INFO | Samples   : 4766
+2026-03-16 19:48:00,143 | INFO | Patients  : 4766
+2026-03-16 19:48:00,143 | INFO | Classes   : 9
+2026-03-16 19:48:00,143 | INFO | --- FULL : VENDOR/BIAS ANALYSIS ---
+2026-03-16 19:48:00,152 | INFO | 
+label                      cnv1  cnv2  cnv3  dme   ga  healthy  iamd  rvo  stargardt
+vendor                                                                              
+NORMATIVE_AGING               0     0     0    0    0      565     0    0          0
+OPTDATA12                     0     0    92   39    0        0     0  106          0
+OPTDATA2                      0     0     0    0    0        0     0  405          0
+OPTDATA3                      0     0     0    0    0        0     0  252          0
+OPTDATABCCIRR                 0     0    10    0    0        0     0    0          0
+OPTDATABCSPEC                 0     0    35    0  158        0     0    0          0
+OPTDATABCTOP                  0     0     6    0    0        0     0    0          0
+OPTDATADRCR                   0     0     0  603    0        0     0    0          0
+OPTDATAHARBOR                 0     0     0    0    0       61   561    0          0
+OPTDATAHAWK                  99    83   129    0    0        0     0    0          0
+OPTDATAMELBOURNE              0     0     0    0    0        0   312    0          0
+OPTDATAOCTAVECIRR             0     0     2    0    0        0     0    0          0
+OPTDATAOCTAVENIDEK            0     0     1    0    0        0     0    0          0
+OPTDATAOCTAVESPEC             0     0     1    0    0        0     0    0          0
+OPTDATASTARGARDTDISTROPHY     0     0     0    0    0        0     0    0        130
+OPTDATAVIVID                  0     0     0  449    0        0     0    0          0
+OPTDATA_FILLY                 0     0     0    0  294        0     0    0          0
+OPTDATA_FLAME                 0     0     0    0    0      119     0    0          0
+OPTDATA_VSC_DryAMD2           0     0     0    0    0        0   254    0          0
+2026-03-16 19:48:00,912 | INFO | All analyses completed
+2026-03-16 19:48:00,912 | INFO | Outputs saved to: ./OPTIMA3D/analysis

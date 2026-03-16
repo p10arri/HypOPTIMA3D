@@ -1,0 +1,19 @@
+name: baseline
+
+encoder:
+  params:
+    encoder_version: "vit_small_patch16_224.augreg_in21k"
+    emb_dim: 512
+    freeze: False
+    pretrained: False
+    encoder_variant: vit
+
+optimizer_params:
+    classification:
+      euclidean: 
+        lr_lp: 1e-3
+        lr_ft: 3e-5
+        lr: 5e-4
+    # simsiam:
+    #   euclidean: {'encoder': 2e-6, 'projector': 1e-5, 'predictor': 1e-4, 'riemann_head': 1e-5}
+      

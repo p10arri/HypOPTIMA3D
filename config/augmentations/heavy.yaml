@@ -1,0 +1,4 @@
+# Heavy training augmentation
+name: heavy
+_transform_class_: "OCTClassifierTrainTransform"
+transform_size: ${hydra:data.image_size}

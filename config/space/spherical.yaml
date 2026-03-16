@@ -1,0 +1,5 @@
+# Spherical space config
+name: spherical
+curvature: 0.0
+thau: 0.1
+training_mode: "contrastive"
