@@ -9,8 +9,7 @@ import torch.nn.functional as F
 from einops import rearrange
 from loguru import logger
 import timm
-from timm.models.layers import DropPath
-
+from timm.layers import DropPath
 def to_2tuple(x):
     return (x, x) if isinstance(x, int) else x
 
@@ -192,6 +191,7 @@ class ViT3D(nn.Module):
         elif isinstance(m, nn.LayerNorm):
             nn.init.constant_(m.bias, 0)
             nn.init.constant_(m.weight, 1.0)
+
     
     def load_pretrained(self, checkpoint_path:str =None):
         """
@@ -313,7 +313,11 @@ class ViT3D(nn.Module):
         if not self.skip_class_head:
             x = self.head(x)
         return x
-        
+    
+    @property
+    def out_dim(self) -> int:
+        """Returns the dimension of the tensor produced by forward()."""
+        return self.num_classes if not self.skip_class_head else self.embed_dim
 
 
 if __name__ == "__main__":
