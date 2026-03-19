@@ -1,4 +1,0 @@
-# Normal training augmentation
-name: "normal"
-_transform_class_: "NormalTrainTrasform"
-transform_size: ${hydra:data.image_size}

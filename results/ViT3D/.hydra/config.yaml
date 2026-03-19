@@ -1,0 +1,66 @@
+space:
+  name: euclidean
+  curvature: 0.0
+  thau: 0.1
+  training_mode: classification
+model:
+  name: oct_3d_classifier
+  target: src.model.vit3dclassifier.ViT3DClassifier
+  params:
+    img_size: ${data.image_size}
+    num_classes: ${data.num_classes}
+    patch_size: 16
+    in_chans: 1
+    embed_dim: 768
+    depth: 12
+    num_heads: 12
+    num_frames: 49
+    drop_rate: 0.1
+    pretrained: false
+    checkpoint_path: null
+  optimizer_params:
+    classification:
+      lr: 0.0005
+      weight_decay: 0.05
+      warmup_epochs: 15
+      label_smoothing: 0.1
+augmentations:
+  name: oct_classifier
+  _transform_class_: OCTClassifierTrainTransform
+  transform_size: ${hydra:data.image_size}
+experiment: ViT3D
+simsiam: false
+training_mode: ${oc.select:simsiam_mode, ${space.training_mode}}
+seed: 42
+image_size:
+- 224
+- 224
+grad_clip: 1.0
+epochs: 300
+eval_frequency: 2
+early_stopping_patience: 30
+save_checkpoint_enabled: true
+resume_from: null
+data:
+  dataset: nineclasses3D
+  image_size: 224
+  batch_size: 1
+  num_workers: 4
+  pin_memory: true
+  num_classes: 9
+  sampling:
+    m_per_class: 8
+device: cuda
+results_path: results/
+model_path: ${hydra:run.dir}/models
+logs_path: ${hydra:run.dir}/logs
+plots_path: ${hydra:run.dir}/plots
+transform_plots_path: ${plots_path}/transform_plots
+representations_path: ${hydra:run.dir}/representations
+wandb:
+  project: HypOPTIMA3D
+  entity: pdarri97-johannes-kepler-universit-t-linz
+  run_name: ${experiment}
+  mode: online
+  notes: ${hydra:job.override_dirname}
+  resume: allow

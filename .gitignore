@@ -1,8 +1,10 @@
 .private/
 legacy/
+Hypformer/
 OPTIMA3D/processed/nineclasses3D/test/
 OPTIMA3D/processed/nineclasses3D/val/
 OPTIMA3D/processed/nineclasses3D/train/
+OPTIMA3D/processed/nineclasses3D/TEST_RUN/
 wandb/
 
 # Ignore hydra configs and models

@@ -3,6 +3,7 @@ import csv
 import torch
 import cv2
 import numpy as np
+import ast
 import pandas as pd
 import pydicom as dicom
 from pathlib import Path
@@ -15,6 +16,7 @@ from torchvision import transforms
 import torch.nn.functional as F
 from torchvision.transforms import InterpolationMode
 from sklearn.model_selection import StratifiedKFold
+from scipy.ndimage import zoom
 
 from src.utils.enums import DatasetSplit, NineClassesLabel
 
@@ -27,7 +29,7 @@ PROCESSED_DATA_DIR = DATA_DIR_OPTIMA3D / "processed"
 PRIVATE_FOLDER =  PROJ_ROOT / ".private"
 CSV_FILE = PRIVATE_FOLDER / "OPTIMA_15abr_all_vendors.csv"
 
-OUTPUT_COLUMNS = ["img", "FileSetId", "label", "label_int", "n_frames"]
+OUTPUT_COLUMNS = ["img", "FileSetId", "label", "label_int", "shape", "shape_original", "manufacturer"]
 
 def merge_full_dataset(output_path=CSV_FILE):
     if os.path.exists(output_path):
@@ -42,6 +44,26 @@ def merge_full_dataset(output_path=CSV_FILE):
     combined_df.to_csv(output_path, index=False)
     print(f"Full merge dataset saved to: {output_path}")
 
+def resample_volume(volume, spacing, target_spacing=(0.05, 0.01, 0.01)):
+    """
+    Volume Inter-Slice and Intra-Slice spacing is not standarized between manufacturers. This function resamples the volumes to a fixed volume spacing.
+    Trilinear interpolation is used. Thus, after resampling each voxel represents the same physical size across volumes.
+
+    """
+    z, y, x = spacing
+
+    if z is None or y is None or x is None:
+        raise ValueError("Missing spacing")
+
+    scale_factors = (
+        z / target_spacing[0],
+        y / target_spacing[1],
+        x / target_spacing[2]
+    )
+
+    resampled = zoom(volume, zoom=scale_factors, order=1)  # trilinear interpolation
+    return resampled
+
 class DatasetSaver(ABC):
     def __init__(self):
         self.dataset_name = self._get_dataset_name()
@@ -53,12 +75,12 @@ class DatasetSaver(ABC):
         return all((base / f"{split.value}.csv").exists() for split in DatasetSplit)
 
     def _make_new_csv_file(self, name: Path):
-        with open(f"{name}.csv", mode='w') as file:
+        with open(name.with_suffix(".csv"), mode='w') as file:
             writer = csv.writer(file)
             writer.writerow(OUTPUT_COLUMNS)
 
     def _append_to_csv_file(self, name: Path, row: pd.Series):
-        with open(f"{name}.csv", mode='a', newline='') as f:
+        with open(name.with_suffix(".csv"), mode='a', newline='') as f:
             writer = csv.writer(f)
             writer.writerow([row.get(col, "") for col in OUTPUT_COLUMNS])
 
@@ -78,16 +100,22 @@ class DatasetSaver(ABC):
 
                     try:
                         # Get 3d crop of min_frames
-                        img = self._get_image_3d(image_path, min_frames)
+                        img, metadata = self._get_image_3d(image_path, min_frames)
 
                         img_name = f"{save_path}/volume_{i+1}.npz"
+
                         row_out = row.copy()
                         row_out["img"] = str(img_name)
                         row_out["n_frames"] = min_frames
                         
                         self._append_to_csv_file(csv_name, row_out)
                         # Compressed 3D volumes
-                        np.savez_compressed(img_name, img=img)
+                        np.savez_compressed(
+                            img_name,
+                            img=img,
+                            **{k: np.array(v) if not isinstance(v, (str, int, float, np.ndarray)) else v
+                            for k, v in metadata.items()}
+                        )
                     except Exception as e:
                         pbar.write(f"Warning: Skipping corrupted file {image_path} | Error: {e}")
                         continue
@@ -136,24 +164,36 @@ class NineClasses3DDatasetSaver(DatasetSaver):
         return train_df.reset_index(drop=True), val_df.reset_index(drop=True), test_df.reset_index(drop=True), min_frames
 
     def _get_image_3d(self, path: str, target_frames: int):
-        dicom_file = dicom.dcmread(path, force=True)
-        # --- FIX FOR NON-STANDARD DICOMS ---
-        # Manually inject the missing 'Samples per Pixel' tag
-        if 'SamplesPerPixel' not in dicom_file:
-            dicom_file.SamplesPerPixel = 1
-        
+        dcm  = dicom.dcmread(path, force=True)
+
+        #  FIX MISSING TAGS FOR NON-STANDARD DICOMS 
+        # Manually add the missing 'Samples per Pixel' tag
+        if 'SamplesPerPixel' not in dcm:
+            dcm .SamplesPerPixel = 1
         # Some files might also miss 'PlanarConfiguration' or 'PhotometricInterpretation'
-        if 'PhotometricInterpretation' not in dicom_file:
-            dicom_file.PhotometricInterpretation = "MONOCHROME2"
-        # ------------------------------------
+        if 'PhotometricInterpretation' not in dcm :
+            dcm .PhotometricInterpretation = "MONOCHROME2"
 
-        volume = dicom_file.pixel_array # (Slices, H, W)
+        # Extract spacing
+        z = getattr(dcm, "SpacingBetweenSlices", None) or getattr(dcm, "SliceThickness", None)
+        yx = getattr(dcm, "PixelSpacing", [None, None])
 
-        total_frames = volume.shape[0]
-        center = total_frames // 2
+        z = float(z) if z is not None else None
+        y, x = map(float, yx) if yx is not None and len(yx) == 2 else (None, None)
+
+        spacing = (z, y, x)
+
+        # Load volume
+        volume = dcm.pixel_array # (Slices, H, W)
         
-        # Calculate the central crop
+        # Resampling
+        volume_resampled = resample_volume(volume, spacing=spacing, target_spacing=(0.05, 0.01, 0.01))
+
+        # Crop center in depth (Z axis)
+        total_frames = volume_resampled.shape[0] # the center is now in physical space, not original space
+        center = total_frames // 2
         half_crop = target_frames // 2
+
         start = max(0, center-half_crop)
         end = start + target_frames
 
@@ -162,16 +202,30 @@ class NineClasses3DDatasetSaver(DatasetSaver):
             end = total_frames
             start = max(0, end - target_frames)
         
-        volume_crop = volume[start:end, : , :]
+        volume_crop = volume_resampled[start:end, : , :]
 
-        # Safety padding. If volume smaller than min_frames
+        # Pad if needed
         if volume_crop.shape[0] < target_frames:
             pad_val = target_frames - volume_crop.shape[0]
             volume_crop = np.pad(volume_crop, ( (0, pad_val), (0,0), (0,0) ),mode="edge" )
 
-        # Normalize
-        image_3d = cv2.normalize(volume_crop, None, 0, 255, cv2.NORM_MINMAX)
-        return np.uint8(image_3d)
+        # Normalize 
+        # NOTE: Per volume normalization (min-max) may introduce variability across scans, better percentile normalization
+        p1, p99 = np.percentile(volume_crop, (1, 99))
+        volume_crop = np.clip(volume_crop, p1, p99)
+        volume_crop = ((volume_crop - p1) / (p99 - p1 + 1e-8) * 255).astype(np.uint8)
+
+
+        metadata =  {
+            "spacing": (0.05, 0.01, 0.01),
+            "spacing_original": spacing, 
+            "shape": volume_crop.shape,
+            "shape_resampled": volume_resampled.shape,
+            "shape_original": volume.shape,
+            "n_frames_used": target_frames,
+            "manufacturer": getattr(dcm, "Manufacturer", "UNKNOWN")
+        }
+        return volume_crop, metadata
 
     def _get_save_path(self):
         return Path(PROCESSED_DATA_DIR) / self.dataset_name
@@ -258,7 +312,26 @@ class NineClasses3DDatasetLoader:
             raise FileNotFoundError(f"Processed data directory not found at {self.base_dir}. "
                                     "Did you run the DatasetSaver yet?")
 
-        dfs = {split: pd.read_csv(self.base_dir / f"{split.value}.csv") for split in DatasetSplit}
+        # Helper to safely parse strings into tuples
+        def parse_tuple(val):
+            try:
+                return ast.literal_eval(val) if isinstance(val, str) else val
+            except (ValueError, SyntaxError):
+                return val
+
+        dfs = {}
+        for split in DatasetSplit:
+            file_path = self.base_dir / f"{split.value}.csv"
+            df = pd.read_csv(file_path)
+            
+            # Deserialize shape columns from string to tuple
+            if "shape" in df.columns:
+                df["shape"] = df["shape"].apply(parse_tuple)
+            if "shape_original" in df.columns:
+                df["shape_original"] = df["shape_original"].apply(parse_tuple)
+                
+            dfs[split] = df
+
         return dfs[DatasetSplit.TRAIN], dfs[DatasetSplit.VAL], dfs[DatasetSplit.TEST]
 
     def build_datasets(self):
@@ -301,22 +374,92 @@ class NineClasses3DDatasetLoader:
         )
 
         return train_loader, val_loader, test_loader
-    
+
+
+# BUILD DATASET
+def run_test_builder(csv_path: str, max_samples_per_split: int = 5):
+    """
+    Build a small subset of the dataset for debugging purposes.
+    This avoids processing the full dataset.
+    """
+
+    print("Running TEST dataset builder (small subset)...")
+
+    saver = NineClasses3DDatasetSaver(csv_path=csv_path)
+
+    # Load raw splits
+    train_df, val_df, test_df, min_frames = saver._load_raw_data()
+
+    # Subsample each split
+    train_df = train_df.sample(min(max_samples_per_split, len(train_df)), random_state=42)
+    val_df   = val_df.sample(min(max_samples_per_split, len(val_df)), random_state=42)
+    test_df  = test_df.sample(min(max_samples_per_split, len(test_df)), random_state=42)
+
+    # Override saver pipeline by monkey-patching splits
+    splits = [train_df, val_df, test_df]
+
+    base_save_path = saver._get_save_path() / "TEST_RUN"
+    os.makedirs(base_save_path, exist_ok=True)
+
+    for split_enum, df in zip(DatasetSplit, splits):
+        save_path = base_save_path / split_enum.value
+        os.makedirs(save_path, exist_ok=True)
+
+        csv_name = base_save_path / split_enum.value
+        saver._make_new_csv_file(csv_name)
+
+        print(f"\nProcessing {split_enum.name} (TEST subset)...")
+
+        for i, row in tqdm(df.iterrows(), total=len(df)):
+            image_path = row["sample_path"]
+
+            try:
+                img, metadata = saver._get_image_3d(image_path, min_frames)
+
+                img_name = f"{save_path}/volume_{i+1}.npz"
+
+                row_out = row.copy()
+                row_out["img"] = str(img_name)
+                row_out["shape"] = metadata["shape"]
+                row_out["shape_original"] = metadata["shape_original"]
+                row_out["manufacturer"] = metadata["manufacturer"]
+
+                saver._append_to_csv_file(csv_name, row_out)
+
+                np.savez_compressed(img_name, img=img, **metadata)
+
+            except Exception as e:
+                print(f"Skipping {image_path} | Error: {e}")
+
+    print("\nTEST dataset builder completed.")
+
+
+def run_full_builder(csv_path: str):
+    print("Running FULL dataset builder...")
+    if not Path(csv_path).exists():
+        print(f"CSV not found at {csv_path}. Attempting merge...")
+        merge_full_dataset()
+    saver = NineClasses3DDatasetSaver(csv_path=csv_path)
+    if saver.check_preprocessed_data_saved():
+        print("Dataset already exists. Skipping build.")
+    else:
+        saver.save_dataset()
+        print("Full dataset creation complete.")
 
 if __name__ == "__main__":
-    # Create OPTIMA3D
     print(f"Project Root: {PROJ_ROOT}")
     print(f"Target Directory: {DATA_DIR_OPTIMA3D}")
-    
-    if not CSV_FILE.exists():
-        print(f"CSV not found at {CSV_FILE}. Attempting merge...")
-        merge_full_dataset()
-    
-    saver = NineClasses3DDatasetSaver(csv_path=CSV_FILE)
-    
-    if saver.check_preprocessed_data_saved():
-        print("OPTIMA3D dataset already exists. Skipping build.")
+
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--mode", type=str, default="full", choices=["full", "test"])
+    parser.add_argument("--csv", type=str, default=str(CSV_FILE))
+    parser.add_argument("--test_samples", type=int, default=5)
+
+    args = parser.parse_args()
+
+    if args.mode == "test":
+        run_test_builder(args.csv, max_samples_per_split=args.test_samples)
     else:
-        print("Starting OPTIMA3D dataset creation...")
-        saver.save_dataset()
-        print("Dataset creation complete.")
+        run_full_builder(args.csv)

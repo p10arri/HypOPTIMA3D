@@ -1,5 +1,0 @@
-name: adam
-weight_decay: 0.1
-warmup_epochs: 15
-simsiam:
-  warmup_lr: 10

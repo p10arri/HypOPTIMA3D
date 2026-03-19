@@ -8,11 +8,6 @@ class Space(Enum):
     SPHERICAL = "spherical"
     HYPERBOLIC = "hyperbolic"
 
-class ModelVariant(Enum):
-    DINO = 'dino'
-    VIT = 'vit'
-    BASELINE = 'baseline'
-
 class TrainingMode(Enum):
     # Standard classification: 1 image -> logits -> CrossEntropy
     CLASSIFICATION = "classification" 
@@ -84,9 +79,6 @@ class OptimizerType(Enum):
 # Helper Functions
 def to_space(value: str) -> Space:
     return Space(value)
-
-def to_model(value: str) -> ModelVariant: # Fixed naming from ModelType
-    return ModelVariant(value)
 
 def to_optimizer(value: str) -> OptimizerType:
     return OptimizerType(value)
