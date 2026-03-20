@@ -1,0 +1,5 @@
+# Hyperbolic space config
+name: hyperbolic
+curvature: 0.1
+clip_radius: 2.3
+thau: 0.2

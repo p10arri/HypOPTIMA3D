@@ -1,14 +1,13 @@
 defaults:
   - space: euclidean                    # options: euclidean, spherical, hyperbolic
-  - model: projector                    # options: projector, simsiam
+  - model:                     # options: projector, simsiam
   - augmentations: oct_classifier       # options: oct_classifier, normal, heavy
   - _self_
 
 # ------------------ Experiment Settings ----------------
 experiment: ???           # name of the experiment
 
-simsiam: false
-training_mode: ${oc.select:simsiam_mode, ${space.training_mode}} # use space.training_mode UNLESS simsiam is true
+training_mode: "supervised" # options: supervised, contrastive and simsiam (not implemented yet)
 
 
 seed: 42
