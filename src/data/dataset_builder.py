@@ -106,6 +106,9 @@ class DatasetSaver(ABC):
 
                         row_out = row.copy()
                         row_out["img"] = str(img_name)
+                        row_out["shape"] = metadata.get("shape")
+                        row_out["shape_original"] = metadata.get("shape_original")
+                        row_out["manufacturer"] = metadata.get("manufacturer")
                         row_out["n_frames"] = min_frames
                         
                         self._append_to_csv_file(csv_name, row_out)

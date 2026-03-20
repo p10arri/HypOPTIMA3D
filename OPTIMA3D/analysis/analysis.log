@@ -1,0 +1,16 @@
+2026-03-20 12:55:26,849 | INFO | Loading train: OPTIMA3D/processed/nineclasses3D/train.csv
+2026-03-20 12:55:26,921 | INFO | --- TRAIN : BASIC STATS ---
+2026-03-20 12:55:26,922 | INFO | Samples: 3217 | Vendors: ['Heidelberg Engineering', 'Cirrus', 'Topcon', 'Nidek']
+2026-03-20 12:55:26,922 | INFO | --- TRAIN : SHAPE & SIZE ANALYSIS ---
+2026-03-20 12:55:28,325 | INFO | --- TRAIN : VENDOR BIAS ANALYSIS ---
+2026-03-20 12:55:28,564 | INFO | Loading val: OPTIMA3D/processed/nineclasses3D/val.csv
+2026-03-20 12:55:28,593 | INFO | --- VAL : BASIC STATS ---
+2026-03-20 12:55:28,593 | INFO | Samples: 1192 | Vendors: ['Heidelberg Engineering', 'Cirrus', 'Topcon']
+2026-03-20 12:55:28,593 | INFO | --- VAL : SHAPE & SIZE ANALYSIS ---
+2026-03-20 12:55:29,710 | INFO | --- VAL : VENDOR BIAS ANALYSIS ---
+2026-03-20 12:55:30,132 | INFO | Loading test: OPTIMA3D/processed/nineclasses3D/test.csv
+2026-03-20 12:55:30,143 | INFO | --- TEST : BASIC STATS ---
+2026-03-20 12:55:30,143 | INFO | Samples: 357 | Vendors: ['Heidelberg Engineering', 'Cirrus', 'Topcon']
+2026-03-20 12:55:30,144 | INFO | --- TEST : SHAPE & SIZE ANALYSIS ---
+2026-03-20 12:55:30,999 | INFO | --- TEST : VENDOR BIAS ANALYSIS ---
+2026-03-20 12:55:31,183 | INFO | Analysis complete. Results saved in: ./OPTIMA3D/analysis

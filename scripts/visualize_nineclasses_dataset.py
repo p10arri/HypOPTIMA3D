@@ -1,15 +1,18 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 import torch
 from torch.utils.data import DataLoader
 import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
 
 from src.data.dataset_builder import FlexDataset3D, NineClasses3DDatasetLoader
 
-PROJ_ROOT = Path(__file__).resolve().parents[2]
-OUTPUT_DIR = PROJ_ROOT / "OPTIMA3D" / "visualizations"
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+# PROJ_ROOT = Path(__file__).resolve().parents[2]
+
+OUTPUT_DIR = "./OPTIMA3D_not_resampled/visualizations"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # ------------------------------
 # Load datasets using loader
@@ -24,8 +27,8 @@ train_loader, val_loader, test_loader = loader.build_dataloaders()
 train_dataset = loader.train_dataset
 train_df = train_dataset.data  # pandas DataFrame
 
-print("Columns in CSV:", train_df.columns.tolist())
-print("Number of samples:", len(train_df))
+# print("Columns in CSV:", train_df.columns.tolist())
+# print("Number of samples:", len(train_df))
 
 # Validate columns
 required = {"img", "label", "label_int"}
@@ -43,10 +46,10 @@ class_counts = (
     .reset_index(name="count")
     .sort_values("label_int")
 )
-print(class_counts.to_string(index=False))
+# print(class_counts.to_string(index=False))
 
 num_classes = train_df["label_int"].nunique()
-print(f"\nNumber of classes: {num_classes}")
+# print(f"\nNumber of classes: {num_classes}")
 
 # ------------------------------
 # Visualize batch (Middle Slice)
@@ -76,7 +79,7 @@ for i, ax in enumerate(axs.flatten()):
 
 plt.suptitle("OPTIMA3D – Training Batch (Middle Slices)", fontsize=16)
 plt.tight_layout()
-save_path = OUTPUT_DIR / "batch_visualization_middle_slice.png"
+save_path = os.path.join(OUTPUT_DIR, "batch_visualization_middle_slice.png")
 plt.savefig(save_path, dpi=300)
 print(f"\nSaved batch visualization to {save_path}")
 plt.show()
@@ -94,7 +97,7 @@ mid_idx = depth // 2
 mid_slice = sample_vol[mid_idx]
 
 # Plot every "step" number of slices
-step = 3 
+step = None
 indices = np.arange(0, depth, step)
 
 cols = 6
@@ -129,7 +132,7 @@ for j in range(len(indices), len(axs)):
 plt.suptitle(f"Volumetric Variance Inspection: {label}\n(Red highlights features not present in Middle Slice)", fontsize=16)
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
-save_path_full_depth = OUTPUT_DIR / f"depth_visualization_{label}.png"
+save_path_full_depth = os.path.join(OUTPUT_DIR, f"depth_visualization_{label}.png")
 plt.savefig(save_path_full_depth, dpi=300)
 print(f"Saved full depth inspection to {save_path_full_depth}")
 
@@ -142,8 +145,8 @@ unique_df = (
     .groupby("label_int", as_index=False)
     .first()
 )
-print("Samples per class:")
-print(unique_df[["label_int", "label"]])
+# print("Samples per class:")
+# print(unique_df[["label_int", "label"]])
 
 num_classes = len(unique_df)
 unique_dataset = FlexDataset3D(unique_df)
@@ -179,7 +182,7 @@ for j in range(num_classes, len(axs)):
 
 plt.suptitle("OPTIMA3D – One Sample Per Class (Middle Slices)", fontsize=16)
 plt.tight_layout()
-save_path = OUTPUT_DIR / "unique_classes.png"
+save_path = os.path.join(OUTPUT_DIR, "unique_classes.png")
 plt.savefig(save_path, dpi=300)
 print(f"\nSaved unique class visualization to {save_path}")
 plt.show()
@@ -217,7 +220,7 @@ for j in range(num_classes, len(axs)):
 plt.suptitle("OPTIMA3D – En-face Maximum Intensity Projections (MIP) per Class", fontsize=16)
 plt.tight_layout()
 
-save_path_mip = OUTPUT_DIR / "unique_classes_mip.png"
+save_path_mip= os.path.join(OUTPUT_DIR, "unique_classes_mip.png")
 plt.savefig(save_path_mip, dpi=300)
 print(f"Saved MIP visualization to {save_path_mip}")
 plt.show()
@@ -277,7 +280,70 @@ for j in range(num_classes, len(axs)):
 plt.suptitle("3D Advantage: Volumetric Details (Red) vs. Middle Slice (Gray)", fontsize=18, y=0.98)
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
-save_path_diff = OUTPUT_DIR / "3d_context_difference.png"
+save_path_diff = os.path.join(OUTPUT_DIR, "3d_context_difference.png")
 plt.savefig(save_path_diff, dpi=300, bbox_inches='tight')
 print(f"Saved Difference Map visualization to {save_path_diff}")
 plt.show()
+
+
+# --------------------------------------------------------------------------
+# Layered Volume
+# --------------------------------------------------------------------------
+def plot_layered_volume(volume, label_name, num_slices=10, spacing=2.0, save_name="layered_horiz.png"):
+    """
+    Plots slices stacked horizontally (Left-to-Right).
+    spacing: multiplier to increase distance between slices for clarity.
+    """
+    depth, height, width = volume.shape
+    indices = np.linspace(0, depth - 1, num_slices).astype(int)
+    
+    fig = plt.figure(figsize=(16, 10))
+    ax = fig.add_subplot(111, projection='3d')
+    
+    # Create grids for Height and Width
+    y_grid, z_grid = np.meshgrid(np.arange(height), np.arange(width))
+
+    for i, idx in enumerate(indices):
+        slice_data = volume[idx, :, :].astype(float).T # Transpose to match grid
+        slice_norm = (slice_data - slice_data.min()) / (slice_data.max() - slice_data.min() + 1e-8)
+        
+        # Position each slice at a 'Horizontal' X position
+        x_pos = i * (width * spacing)
+        
+        ax.plot_surface(np.full_like(y_grid, x_pos), y_grid, z_grid,
+                        rstride=2, cstride=2, 
+                        facecolors=plt.cm.gray(slice_norm), 
+                        shade=False, 
+                        alpha=0.6, # Transparency value
+                        antialiased=True)
+
+    ax.set_title(f"Horizontal 3D Stack: {label_name}", fontsize=15)
+    ax.set_xlabel("Depth progression (Slices)")
+    ax.set_ylabel("Height (Y)")
+    ax.set_zlabel("Width (X)")
+    
+    # Perspective to see them side-by-side
+    ax.view_init(elev=15, azim=-60)
+    
+    # remove background grids
+    ax.grid(False)
+    ax.xaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
+    ax.yaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
+    ax.zaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
+
+    plt.tight_layout()
+    save_path = os.path.join(OUTPUT_DIR, save_name)
+    plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    plt.show()
+    print(f"Saved layered volume visualization to {save_path}")
+
+
+# Pick the first sample from last batch
+sample_vol = imgs[0].squeeze().cpu().numpy()
+sample_label = label_names[0]
+plot_layered_volume(sample_vol,
+                    sample_label, 
+                    num_slices=12, 
+                    spacing=2.0,
+                    save_name=f"layered_stack_{sample_label}.png")
+

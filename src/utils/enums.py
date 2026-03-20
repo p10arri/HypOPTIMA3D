@@ -10,10 +10,10 @@ class Space(Enum):
 
 class TrainingMode(Enum):
     # Standard classification: 1 image -> logits -> CrossEntropy
-    CLASSIFICATION = "classification" 
+    SUPERVISED = "supervised" 
     # Self-supervised/Metric: 2 views -> embeddings -> PairwiseCELoss
     CONTRASTIVE = "contrastive"       
-    # Siamese SSL: 2 views -> projection/prediction head -> Cosine Similarity
+    # Siamese SSL: 2 views -> embeddings -> Cosine Similarity
     SIMSIAM = "simsiam"
 
 class DatasetSplit(Enum):

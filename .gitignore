@@ -1,6 +1,11 @@
 .private/
 legacy/
 Hypformer/
+OPTIMA3D_not_resampled/processed/nineclasses3D/test/
+OPTIMA3D_not_resampled/processed/nineclasses3D/val/
+OPTIMA3D_not_resampled/processed/nineclasses3D/train/
+OPTIMA3D_not_resampled/processed/nineclasses3D/TEST_RUN/
+
 OPTIMA3D/processed/nineclasses3D/test/
 OPTIMA3D/processed/nineclasses3D/val/
 OPTIMA3D/processed/nineclasses3D/train/

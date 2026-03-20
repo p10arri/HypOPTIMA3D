@@ -1,6 +1,6 @@
 import numpy as np
 
-file_path = "OPTIMA3D/processed/nineclasses3D/TEST_RUN/train/volume_145.npz"
+file_path = "OPTIMA3D_not_resampled/processed/nineclasses3D/train/volume_1.npz"
 
 data = np.load(file_path, allow_pickle=True)
 

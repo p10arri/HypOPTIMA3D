@@ -15,7 +15,7 @@ def get_augmentations(transform_size: int, aug_mode: str = None, training_mode: 
     train_transform = None
     
     if training_mode and aug_mode:
-        two_views = True if training_mode in [TrainingMode.SIMSIAM, TrainingMode.CONTRASTIVE] else False
+        two_views = False if training_mode == TrainingMode.SUPERVISED else True
         mode = Augmentation(aug_mode)
         
         if mode == Augmentation.NORMAL:
