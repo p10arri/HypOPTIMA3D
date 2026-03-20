@@ -1,0 +1,68 @@
+defaults:
+  - space: euclidean                    # options: euclidean, spherical, hyperbolic
+  - model: projector                    # options: projector, simsiam
+  - augmentations: oct_classifier       # options: oct_classifier, normal, heavy
+  - _self_
+
+# ------------------ Experiment Settings ----------------
+experiment: ???           # name of the experiment
+
+simsiam: false
+training_mode: ${oc.select:simsiam_mode, ${space.training_mode}} # use space.training_mode UNLESS simsiam is true
+
+
+seed: 42
+image_size: [224, 224]
+grad_clip: 1.0
+epochs: 300
+eval_frequency: 2
+early_stopping_patience: 30        # options: null or integer. Stop if no improvement in 'patience' evaluation epochs
+save_checkpoint_enabled: true
+resume_from: null         # path or null to start fresh
+
+data:
+  dataset: "nineclasses3D"
+  image_size: 224
+  batch_size: 1
+  num_workers: 4
+  pin_memory: True
+  num_classes: 9
+  
+  sampling:
+    m_per_class: 8 # value for UniqueSubsetSampler
+
+optimizer: 
+  weight_decay: 0.1
+  warmup_epochs: 15
+
+device: "cuda"
+
+# ------------------ Hydra Runtime Settings ----------------
+hydra:
+  run:
+    dir: results/${experiment}  # working directory for this run
+  job:
+    config:
+      override_dirname: 
+        exclude_keys:
+          - optimizer
+          
+
+
+# ------------------ Paths ----------------
+results_path: results/
+model_path: ${hydra:run.dir}/models
+logs_path: ${hydra:run.dir}/logs
+plots_path: ${hydra:run.dir}/plots
+transform_plots_path: ${plots_path}/transform_plots
+representations_path: ${hydra:run.dir}/representations
+
+# ------------------ Wandb ----------------
+
+wandb:
+  project: HypOPTIMA3D
+  entity: 'pdarri97-johannes-kepler-universit-t-linz'
+  run_name: ${experiment}
+  mode: online                            # options: online, offline, disabled
+  notes: ${hydra:job.override_dirname}
+  resume: allow                           # 'allow' enables resuming previous runs or "never"

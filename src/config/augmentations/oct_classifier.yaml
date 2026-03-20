@@ -1,0 +1,4 @@
+# OCT training augmentation
+name: oct_classifier
+_transform_class_: "OCTClassifierTrainTransform"
+transform_size: ${hydra:data.image_size}

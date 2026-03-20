@@ -1,0 +1,4 @@
+# Heavy Classifier training augmentation
+name: heavy
+_transform_class_: "HeavyTrainTransform"
+transform_size: ${hydra:data.image_size}

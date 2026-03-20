@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Union, Optional, Tuple
 
 import torch
 import torch.nn as nn
@@ -16,7 +16,7 @@ from loguru import logger
 from pathlib import Path
 import wandb
 
-from src.utils.enums import TrainingMode, Space
+from src.utils.enums import TrainingMode, Space, NineClassesLabel
 from src.evaluator import Evaluator
 
 def seed_all(seed):
@@ -207,13 +207,13 @@ class Trainer:
         if self.training_mode == TrainingMode.SUPERVISED:
             # images is a single Tensor
             outputs = self.model(images)
-            loss, stats = self.loss_fn(outputs, targets)
+            loss, stats = self.loss_fn(outputs['logits'], targets)
             
         elif self.training_mode == TrainingMode.CONTRASTIVE:
             # images are two views of same image
             z1 = self.model(images[0])
             z2 = self.model(images[1])
-            loss, stats = self.loss_fn(z1, z2)
+            loss, stats = self.loss_fn(z1['embeddings'], z2['embeddings'])
             outputs = z1
             
         elif self.training_mode == TrainingMode.SIMSIAM:
@@ -237,89 +237,54 @@ class Trainer:
         return loss.item(), stats
 
     @torch.no_grad()
-    def evaluate(self) -> float:
-        pass # TODO: Should be done in the evaluator 
-    # @torch.no_grad()
-    # def evaluate(self) -> float:
-    #     self.model.eval()
-    #     eval_metrics = {}
+    def evaluate(self) -> Tuple[float, bool]:
+
+        eval_metrics = self.evaluator.run(
+            model=self.model, 
+            loader=self.eval_loader, 
+            loss_fn=self.loss_fn
+        )
+
+        # Determine the primary score for checkpointing
+        # Supervised -> Accuracy | Contrastive -> Recall@1
+        if self.training_mode == TrainingMode.SUPERVISED:
+            score = eval_metrics.get("eval/accuracy", 0.0)
+        else:
+            score = eval_metrics.get("eval/recall@1", 0.0)
+    
+
+        # wandb log
+        wandb_logs = {
+        "epoch": self.current_epoch, 
+        "global_step": self.global_step
+        }
+
+        for k, v in eval_metrics.items():
+            # Log Confusion Matrix
+            if "confusion_matrix" in k:
+                wandb_logs["eval/conf_mat"] = wandb.plot.confusion_matrix(
+                    probs=None,
+                    y_true=eval_metrics.pop("raw_y_true"), # Remove from dict so it's not logged as raw data
+                    preds=eval_metrics.pop("raw_y_pred"),
+                    class_names = NineClassesLabel.class_names()
+                )
+
+                wandb_logs[k] = wandb.Image(self._plot_confusion_matrix(v), caption=k)
+            else:
+                wandb_logs[k] = v
+
+        wandb.log(wandb_logs)
+
+        # 4. Logging and Checkpointing
+        logger.info(f"Epoch {self.current_epoch} | Eval Score ({self.training_mode.name}): {score:.4f}")
         
-    #     ## SUPERVISED MODE
-    #     if self.training_mode == TrainingMode.SUPERVISED:
-    #         total_loss, correct, total_batches = 0.0, 0, 0
-
-    #         for batch in self.eval_loader:
-    #             batch = self._move_batch_to_device(batch)
-    #             images, targets = batch['img'], batch['label']
-
-    #             outputs = self.model(images)
-    #             loss, _ = self.loss_fn(outputs, targets)
-
-    #             preds = torch.argmax(outputs, dim=1)
-    #             correct += (preds == targets).sum().item()
-    #             total_samples += targets.size(0)
-    #             total_loss += loss.item()
-            
-    #         avg_loss = total_loss / len(self.eval_loader)
-    #         score = correct /
-
-    #     # For Classification Accuracy
-    #     correct = 0
-    #     total_samples = 0
-
-    #     for batch in self.eval_loader:
-    #         batch = self._move_batch_to_device(batch)
-    #         images = batch['img']
-    #         targets = batch['label']
-
-    #         if self.training_mode == TrainingMode.CLASSIFICATION:
-    #             outputs = self.model(images)
-    #             loss, stats = self.loss_fn(outputs, targets)
-    #             # Accuracy calc
-    #             preds = torch.argmax(outputs, dim=1)
-    #             correct += (preds == targets).sum().item()
-    #             total_samples += targets.size(0)
-    #         else:
-    #             # Use first view for Contrastive validation loss
-    #             img_v = images[0] if isinstance(images, list) else images
-    #             z1 = self.model(img_v)
-    #             # Eval loss is a placeholder
-    #             loss = torch.tensor(0.0).to(self.device) 
-    #             stats = {}
-            
-    #         total_loss += loss.item()
-    #         total_batches += 1
-
-    #     avg_loss = total_loss / total_batches
-    #     eval_metrics["eval/loss"] = avg_loss
-
-    #     # Logic accuracy for checkpointing
-    #     if self.training_mode == TrainingMode.CLASSIFICATION:
-    #         score = correct / total_samples
-    #         eval_metrics["eval/accuracy"] = score
-    #     else:
-    #         # SSL Metric Learning Recall
-    #         recall_head, recall_body, _, _ = self.evaluator.evaluate_head_body(
-    #             self.model, self.eval_loader
-    #         )
-    #         eval_metrics["eval/recall_head"] = recall_head
-    #         eval_metrics["eval/recall_body"] = recall_body
-    #         # Use the RecallHead@1 as score
-    #         score = recall_head["recall@1"] if isinstance(recall_head, dict) else recall_head 
-
-    #     # Log to wandb
-    #     wandb_logs = {"global_step": self.global_step, "epoch": self.current_epoch}
-    #     for k, v in eval_metrics.items():
-    #         if isinstance(v, dict):
-    #             for sub_k, sub_v in v.items(): wandb_logs[f"{k}/{sub_k}"] = sub_v
-    #         else: wandb_logs[k] = v
-    #     wandb.log(wandb_logs)
-
-    #     logger.info(f"Epoch {self.current_epoch} | Score: {score:.4f} | Loss: {avg_loss:.4f}")
-    #     is_best = self.save_checkpoint(score)
-    #     self.model.train()
-    #     return score, is_best
-
+        is_best = self.save_checkpoint(score)
+        
+        # Ensure model returns to training mode
+        self.model.train()
+        
+        return score, is_best
+    
     def train(self, num_epochs: int, resume_from: bool = False):
         logger.disable("src.evaluator")
         if resume_from:

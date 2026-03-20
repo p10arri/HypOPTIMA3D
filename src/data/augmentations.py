@@ -27,7 +27,7 @@ def get_augmentations(transform_size: int, aug_mode: str = None, training_mode: 
         else:
             raise ValueError(f"Unsupported augmentation mode: {aug_mode}")
 
-    test_transform = TestTransform(transform_size=transform_size, two_views=two_views)
+    test_transform = TestTransform(transform_size=transform_size, two_views=False)
     return train_transform, test_transform
 
 class VolumeTransform:
