@@ -263,17 +263,27 @@ class FlexDataset3D(Dataset):
 
         sample = self.transform(sample)
 
-        # Spatial resizing (no depth resize)
-        sample = F.interpolate(
-                sample.unsqueeze(0), 
-                size=(sample.shape[1], 224, 224), # Spatial resize
-                mode='trilinear', # 3d interpolation
+        def process_tensor(img_tensor):
+            # Normalize
+            if img_tensor.max() > 1.0:
+                img_tensor = img_tensor.float() / 255.0
+                
+            # Spatial resizing
+            return F.interpolate(
+                img_tensor.unsqueeze(0), 
+                size=(img_tensor.shape[1], 224, 224), 
+                mode='trilinear', 
                 align_corners=False
             ).squeeze(0)
 
+        # Contrastive vs Supervised cases
+        if isinstance(sample, tuple):
+            processed_sample = tuple(process_tensor(s) for s in sample)
+        else:
+            processed_sample = process_tensor(sample)
 
         return {
-            "img": sample,
+            "img": processed_sample,
             "label": torch.tensor(label_int, dtype=torch.long),
             "label_name": label_enum.name.lower(),
             "fileset": row["FileSetId"],
@@ -283,6 +293,10 @@ class FlexDataset3D(Dataset):
 
     def get_labels(self) -> np.ndarray:
         return self.data["label_int"].values
+    @property
+    def labels(self) -> List[int]:
+        """Instant access to labels without loading data."""
+        return self.data["label_int"].tolist()
 
 class NineClasses3DDatasetLoader:
     def __init__(self, 
@@ -378,6 +392,36 @@ class NineClasses3DDatasetLoader:
 
         return train_loader, val_loader, test_loader
 
+    def build_stratified_subsets(self, samples_per_class: int = 2):
+        """
+        Creates stratified subsets for fast development.
+        Ensures every class in NineClassesLabel is present in both train and val.
+        """
+        if self.train_dataset is None:
+            self.build_datasets()
+
+        def get_strat_indices(df: pd.DataFrame):
+            strat_indices = []
+            # Get stratified indixes
+            for class_id in NineClassesLabel.class_ids():
+                class_rows = df[df["label_int"] == class_id]
+                if len(class_rows) > 0:
+                    selected = class_rows.index[:min(len(class_rows), samples_per_class)] # Positional index
+                    strat_indices.extend(df.index.get_indexer(selected).tolist())
+                else:
+                    print(f"Warning: Class {class_id} ({NineClassesLabel(class_id).name}) missing from split.")
+            
+            return strat_indices
+
+        train_strat_idx = get_strat_indices(self.train_dataset.data)
+        val_strat_idx = get_strat_indices(self.val_dataset.data)
+
+        # Create Subsets
+        self.train_dataset = torch.utils.data.Subset(self.train_dataset, train_strat_idx)
+        self.val_dataset = torch.utils.data.Subset(self.val_dataset, val_strat_idx)
+
+        return self.train_dataset, self.val_dataset
+    
 
 # BUILD DATASET
 def run_test_builder(csv_path: str, max_samples_per_split: int = 5):

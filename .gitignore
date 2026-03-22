@@ -13,6 +13,7 @@ OPTIMA3D/processed/nineclasses3D/TEST_RUN/
 wandb/
 
 # Ignore hydra configs and models
+results/dev_trash/
 results/**/.hydra/hydra.yaml
 results/**/.hydra/overrides.yaml
 results/**/models/

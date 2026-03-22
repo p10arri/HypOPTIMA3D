@@ -1,0 +1,26 @@
+name: vit3d
+
+# Architecture Settings
+patch_size: 16
+embed_dim: 768
+depth: 12
+num_heads: 12
+mlp_ratio: 4.0
+qkv_bias: True
+qk_scale: null
+use_grad_checkpoint: True  # Set to True to save ~60% VRAM
+
+# Regularization & Dropout ---
+# crucial to prevent overfitting in 3D  data
+drop_rate: 0.1        # Dropout on the linear projections
+attn_drop_rate: 0.0   # Dropout on the attention weights
+drop_path_rate: 0.1   # Stochastic depth rate (effective for ViTs)
+dropout: 0.1          # General dropout
+
+# Pipeline Settings 
+# skip_class_head: true ensures the backbone returns features for the Projector
+skip_class_head: true 
+
+# --- Pretraining ---
+pretrained: false # If True and no checkpoint path, the vit-s weights are loaded into the 2D weights of the ViT3D
+checkpoint_path: null # Path to .pth for a pre-trained 3D weight file

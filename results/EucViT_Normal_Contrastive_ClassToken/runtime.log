@@ -1,0 +1,11 @@
+2026-03-22 11:11:24.626 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-22 11:11:24.626 | INFO     | __main__:main:30 - 🚀 Experiment: EucViT_Normal_Contrastive_ClassToken | Mode: CONTRASTIVE | Space: euclidean
+2026-03-22 11:11:28.576 | INFO     | src.data.sampler:get_sampler:104 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-22 11:11:28.579 | WARNING  | src.data.sampler:get_sampler:123 - Sampler overriding config batch_size! New batch_size: 9 (9 classes * 1 per class)
+2026-03-22 11:11:33.784 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-22 11:11:33.789 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-22 11:11:42.179 | INFO     | src.trainer:__init__:85 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-22 11:11:43.113 | INFO     | src.trainer:__init__:94 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-22 11:11:43.114 | INFO     | src.trainer:fit:396 - >>> STARTING STANDARD TRAINING
+2026-03-22 12:15:28.140 | INFO     | src.trainer:evaluate:283 - Epoch 1 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 12:15:28.143 | INFO     | src.trainer:save_checkpoint:162 - New best model found! Score: 0.0000

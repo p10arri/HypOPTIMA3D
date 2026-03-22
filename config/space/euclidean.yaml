@@ -1,3 +1,4 @@
 # Euclidean space config
 name: euclidean
 thau: 0.1
+clip_radius: 1.0

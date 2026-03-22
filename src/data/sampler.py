@@ -105,7 +105,12 @@ class SamplerFactory:
             
             k_val = cfg.data.sampling.m_per_class
             
-            labels = dataset.get_labels()
+            # Subset for fast_dev
+            if isinstance(dataset, torch.utils.data.Subset):
+                all_labels = dataset.dataset.get_labels()
+                labels = [all_labels[i] for i in dataset.indices]
+            else:
+                labels = dataset.get_labels()
             
             batch_sampler = AllClassesKSampler(
                 labels=labels, 
@@ -119,7 +124,7 @@ class SamplerFactory:
 
         else:
             # Standard SUPERVISED Euclidean training
-            logger.info("Using standard PyTorch random sampling (None, None)")
+            logger.info("Using standard PyTorch random sampling")
             return None, None
 
         return sampler, batch_sampler

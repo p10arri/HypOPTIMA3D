@@ -13,6 +13,7 @@ def get_loss(cfg, training_mode: TrainingMode) -> nn.Module:
     space = Space(cfg.space.name)
 
     thau = getattr(cfg.space, "thau", 0.1)
+    curvature = getattr(cfg.space, "curvature", 0.0)
 
     if training_mode == TrainingMode.SUPERVISED:
         # Cross entropy loss is invariant of the manifold
@@ -21,11 +22,11 @@ def get_loss(cfg, training_mode: TrainingMode) -> nn.Module:
     
     elif training_mode == TrainingMode.CONTRASTIVE:
         logger.info(f"Using PairwiseCELoss for {space.value} space")
-        return PairwiseCELoss(space=space, curvature=cfg.space.curvature, thau=thau)
+        return PairwiseCELoss(space=space, curvature=curvature, thau=thau)
 
     elif training_mode == TrainingMode.SIMSIAM:
         logger.info(f"Using SimSiam Negative Similarity Loss for {space.value}")
-        return ProjectorSimSiamLoss(space=space, curvature=cfg.space.curvature, thau=thau)
+        return ProjectorSimSiamLoss(space=space, curvature=curvature, thau=thau)
 
 class PairwiseCELoss(nn.Module): 
     """

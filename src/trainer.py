@@ -62,6 +62,7 @@ class Trainer:
 
         self.evaluator = Evaluator(
             device=self.device, 
+            space = self.space,
             training_mode=self.training_mode,
             hyp_c=self.curvature,
             k_list=cfg.get("eval_k_list", [1, 2, 4, 8, 16, 32])
@@ -70,22 +71,31 @@ class Trainer:
         # Training state
         self.current_epoch = 0
         self.global_step = 0
-        self.best_score = -float('inf') # TODO: Modify accordingly with training_mode?
+        self.monitor_mode = "max" # Accuracy and Recall are always "max"
+        self.best_score = -float('inf')
         self.early_stop_counter = 0
-        self.early_stopping_patience = cfg.get("early_stopping_patience")
+        self.early_stopping_patience = cfg.trainer.early_stopping_patience
 
         # Paths
+        self.resume_from = cfg.trainer.resume_from
         self.model_save_path = Path(cfg.model_path)
-        self.model_save_path.mkdir(parents=True, exist_ok=True)
+        
+        # Dont store models if fast_dev_run enabled
+        if not cfg.get("fast_dev_run", False):
+            self.model_save_path.mkdir(parents=True, exist_ok=True)
+        else:
+            logger.info("Fast dev run: Model saving directory creation skipped.")
 
         self._setup_wandb()
         logger.info(
             f"Trainer Initialized | Mode: {self.training_mode.name} | "
-            f"Space: {self.space_name} (c={self.curvature}) | "
+            f"Space: {self.space.name} (c={self.curvature}) | "
             f"Model: {self.model.__class__.__name__}"
         )
 
-        self._setup_wandb()
+        self.wandb = False if cfg.wandb.mode== "disabled" else True
+        if self.wandb:
+            self._setup_wandb()
         logger.info(f"Trainer initialized for {self.training_mode.name}-{self.space.name}-{self.model.__class__.__name__.upper()}")
 
     def _setup_device(self):
@@ -156,6 +166,10 @@ class Trainer:
             self.best_score = current_score
             logger.info(f"New best model found! Score: {current_score:.4f}")
 
+        if self.cfg.get("fast_dev_run", False):
+            logger.debug("Fast dev run enabled: Skipping checkpoint file generation.")
+            return is_best
+        
         checkpoint = {
             'epoch': self.current_epoch,
             'global_step': self.global_step,
@@ -170,7 +184,7 @@ class Trainer:
         best_path = self.model_save_path / "best_model.pt"
         torch.save(checkpoint, latest_path)
         if is_best:
-            torch.save(checkpoint, self.model_save_path / best_path)
+            torch.save(checkpoint, best_path)
         
         self.model.train()
         return is_best
@@ -206,14 +220,14 @@ class Trainer:
 
         if self.training_mode == TrainingMode.SUPERVISED:
             # images is a single Tensor
-            outputs = self.model(images)
-            loss, stats = self.loss_fn(outputs['logits'], targets)
+            outputs = self.model(images)['logits']
+            loss, stats = self.loss_fn(outputs, targets)
             
         elif self.training_mode == TrainingMode.CONTRASTIVE:
             # images are two views of same image
-            z1 = self.model(images[0])
-            z2 = self.model(images[1])
-            loss, stats = self.loss_fn(z1['embeddings'], z2['embeddings'])
+            z1 = self.model(images[0])['embeddings']
+            z2 = self.model(images[1])['embeddings']
+            loss, stats = self.loss_fn(z1, z2)
             outputs = z1
             
         elif self.training_mode == TrainingMode.SIMSIAM:
@@ -254,26 +268,25 @@ class Trainer:
     
 
         # wandb log
-        wandb_logs = {
-        "epoch": self.current_epoch, 
-        "global_step": self.global_step
-        }
+        if self.wandb:
+            wandb_logs = {
+            "epoch": self.current_epoch, 
+            "global_step": self.global_step
+            }
 
-        for k, v in eval_metrics.items():
-            # Log Confusion Matrix
-            if "confusion_matrix" in k:
-                wandb_logs["eval/conf_mat"] = wandb.plot.confusion_matrix(
-                    probs=None,
-                    y_true=eval_metrics.pop("raw_y_true"), # Remove from dict so it's not logged as raw data
-                    preds=eval_metrics.pop("raw_y_pred"),
-                    class_names = NineClassesLabel.class_names()
-                )
+            for k, v in list(eval_metrics.items()):
+                # Log Confusion Matrix
+                if "confusion_matrix" in k:
+                    wandb_logs["eval/conf_mat"] = wandb.plot.confusion_matrix(
+                        probs=None,
+                        y_true = eval_metrics.pop("raw_y_true"), # Remove from dict so it's not logged as raw data
+                        preds = eval_metrics.pop("raw_y_pred"),
+                        class_names = NineClassesLabel.class_names()
+                    )
+                else:
+                    wandb_logs[k] = v
 
-                wandb_logs[k] = wandb.Image(self._plot_confusion_matrix(v), caption=k)
-            else:
-                wandb_logs[k] = v
-
-        wandb.log(wandb_logs)
+            wandb.log(wandb_logs)
 
         # 4. Logging and Checkpointing
         logger.info(f"Epoch {self.current_epoch} | Eval Score ({self.training_mode.name}): {score:.4f}")
@@ -285,9 +298,8 @@ class Trainer:
         
         return score, is_best
     
-    def train(self, num_epochs: int, resume_from: bool = False):
-        logger.disable("src.evaluator")
-        if resume_from:
+    def train(self, num_epochs: int):
+        if self.resume_from:
             checkpoint_path = self.model_save_path / "latest_model.pt"
             logger.info(f"Resuming training from latest model of run: {self.cfg.experiment}")
 
@@ -327,25 +339,28 @@ class Trainer:
                 epoch_loss += loss
                 self.global_step += 1
 
-                wandb.log({
-                    "train/loss": loss,
-                    "train/lr": lr,
-                    **{f"train/{k}": v for k, v in stats.items()}
-                }, step=self.global_step)
+                if self.wandb:
+                    wandb.log({
+                        "train/loss": loss,
+                        "train/lr": lr,
+                        **{f"train/{k}": v for k, v in stats.items()}
+                    }, step=self.global_step)
                 
                 progress_bar.set_postfix({"loss": f"{loss:.4f}", "lr": f"{lr:.6f}"})
                 progress_bar.update(1)
 
             # Metrics
             avg_train_loss = epoch_loss / len(self.train_loader)
-            wandb.log({"train/epoch_loss": avg_train_loss, "epoch": epoch, "stage": self.training_stage}, step=self.global_step)
+            if self.wandb: 
+                wandb.log({"train/epoch_loss": avg_train_loss, "epoch": epoch, "stage": self.training_stage}, step=self.global_step)
 
             if self.scheduler:
                 self.scheduler.step()
-                wandb.log({"train/lr": self.optimizer.param_groups[0]["lr"], "epoch": epoch, "stage": self.training_stage}, step=self.global_step)
+                if self.wandb:
+                    wandb.log({"train/lr": self.optimizer.param_groups[0]["lr"], "epoch": epoch, "stage": self.training_stage}, step=self.global_step)
 
             # Evaluation and checkpoint
-            val_interval = self.cfg.get("eval_frequency", 10)
+            val_interval = self.cfg.trainer.eval_frequency
 
             if (epoch + 1) % val_interval == 0:
                 score, is_best = self.evaluate()
@@ -385,7 +400,7 @@ class Trainer:
             logger.debug(f"Training: {name}")
         
 
-    def fit(self, num_epochs: int, resume_from: bool = False):
+    def fit(self, num_epochs: int):
         """Standard end-to-end classification training."""
         logger.info(f">>> STARTING STANDARD TRAINING")
         self.training_stage = "full_training"
@@ -394,7 +409,8 @@ class Trainer:
         for param in self.model.parameters():
             param.requires_grad = True
             
-        self.train(num_epochs, resume_from)
-        wandb.finish()
+        self.train(num_epochs)
+        if self.wandb:
+            wandb.finish()
 
 

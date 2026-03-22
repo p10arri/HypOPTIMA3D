@@ -1,0 +1,60 @@
+space:
+  name: euclidean
+  thau: 0.1
+  clip_radius: 1.0
+model:
+  name: vit3d
+  patch_size: 16
+  embed_dim: 768
+  depth: 12
+  num_heads: 12
+  mlp_ratio: 4.0
+  qkv_bias: true
+  qk_scale: null
+  use_grad_checkpoint: true
+  drop_rate: 0.1
+  attn_drop_rate: 0.0
+  drop_path_rate: 0.1
+  dropout: 0.1
+  skip_class_head: false
+  pretrained: false
+  checkpoint_path: null
+augmentations:
+  name: normal
+  _transform_class_: NormalTrainTrasform
+  transform_size: ${hydra:data.image_size}
+experiment: EucViT_Normal_Contrastive_ClassToken
+fast_dev_run: false
+seed: 42
+grad_clip: 1.0
+device: cuda
+training_mode: contrastive
+data:
+  dataset: nineclasses3D
+  image_size: 224
+  batch_size: 1
+  num_workers: 4
+  pin_memory: true
+  num_classes: 9
+  sampling:
+    name: unique
+    m_per_class: 1
+optimizer:
+  lr: 0.0001
+  weight_decay: 0.05
+  warmup_epochs: 15
+trainer:
+  epochs: 200
+  eval_frequency: 2
+  early_stopping_patience: 30
+  resume_from: null
+results_path: results/
+model_path: ${hydra:run.dir}/models
+logs_path: ${hydra:run.dir}/logs
+wandb:
+  project: HypOPTIMA3D
+  entity: pdarri97-johannes-kepler-universit-t-linz
+  run_name: ${experiment}
+  mode: online
+  notes: ${hydra:job.override_dirname}
+  resume: allow

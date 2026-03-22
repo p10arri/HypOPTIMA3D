@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import torch
 import torch.nn as nn
-from functools import partial
 import torch.nn.functional as F
+from torch.utils.checkpoint import checkpoint
+from functools import partial
 from einops import rearrange
 from loguru import logger
 import timm
@@ -135,7 +136,7 @@ class ViT3D(nn.Module):
     def __init__(self, img_size=224, patch_size=16, in_chans=1, num_classes=1000, embed_dim=768, transfomer_depth=12,
                  num_heads=12, mlp_ratio=4., qkv_bias=False, qk_scale=None, drop_rate=0., attn_drop_rate=0.,
                  drop_path_rate=0.1, norm_layer=nn.LayerNorm, num_frames=49,dropout=0., 
-                 skip_class_head=False, pretrained=False, checkpoint_path=None):
+                 skip_class_head=False, pretrained=False, checkpoint_path=None, use_grad_checkpoint=True):
 
         super().__init__()
 
@@ -170,6 +171,7 @@ class ViT3D(nn.Module):
             self.head = nn.Linear(embed_dim, num_classes)
 
         # Initialization
+        self.use_grad_checkpoint = use_grad_checkpoint
         torch.nn.init.trunc_normal_(self.pos_embed, std=.02)
         torch.nn.init.trunc_normal_(self.cls_token, std=.02)
 
@@ -303,7 +305,10 @@ class ViT3D(nn.Module):
 
         # Attention blocks
         for blk in self.blocks:
-            x = blk(x, B, D, W)
+            if self.use_grad_checkpoint and self.training:
+                x = checkpoint(blk, x, B, D, W, use_reentrant=False)
+            else:
+                x = blk(x, B, D, W)
 
         x = self.norm(x)
         return x[:, 0]

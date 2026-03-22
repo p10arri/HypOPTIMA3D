@@ -34,6 +34,7 @@ class VolumeTransform:
     """
     Applies 2D transforms consistently across a 3D Volume [C, D, H, W].
     Captures RNG state to ensure every slice gets the EXACT same transformation.
+    Depth augmentations are ignore. Volume transformation at slice level, not interslice level.
     """
     def __init__(self, transform):
         self.transform = transform

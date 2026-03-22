@@ -6,8 +6,7 @@ from torch.utils.data import DataLoader
 from scipy import stats
 
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, recall_score, roc_auc_score, confusion_matrix
-from sklearn.neighbors import KNeighborsClassifier
-from src.utils.enums import Space, TrainingMode
+from src.utils.enums import Space, TrainingMode, NineClassesLabel
 
 from geoopt.manifolds.lorentz import Lorentz
 from geoopt.manifolds.sphere import Sphere
@@ -44,30 +43,36 @@ class Evaluator:
 
             if self.training_mode == TrainingMode.SUPERVISED:
                 out = outputs['logits']
+                loss,_ = loss_fn(out, targets)
+
             elif self.training_mode == TrainingMode.CONTRASTIVE:
                 out = outputs['embeddings']
+                # Recall@1 is the target in validation stage
+                loss = torch.tensor(0.0).to(self.device) # Placeholder
+
             else:
                 raise NotImplementedError(f"Evaluation run not implemented for TrainingMode:{self.training_mode}")
             
-            loss = loss_fn(out, targets)
-
+            
             bs = x.size(0)
             total_loss += loss.item() * bs
             n_samples += bs
 
-            all_outputs.append(outputs)
+            all_outputs.append(out)
             all_targets.append(targets)
 
         avg_loss = total_loss / n_samples
         eval_metrics = {"eval/loss": avg_loss}
         # concatenate
-        targets = torch.cat(all_targets)
+        all_outputs = torch.cat(all_outputs)
+        all_targets = torch.cat(all_targets)
+        
 
         if self.training_mode == TrainingMode.SUPERVISED:
-            sup_metrics = self._evaluate_supervised_batch(all_outputs, targets)
+            sup_metrics = self._evaluate_supervised_batch(all_outputs, all_targets)
             eval_metrics.update(sup_metrics)
         else:
-            cont_metrics = self._evaluate_contrastive_batch(all_outputs, targets)
+            cont_metrics = self._evaluate_contrastive_batch(all_outputs, all_targets)
             eval_metrics.update(cont_metrics)
 
         return eval_metrics
@@ -92,27 +97,31 @@ class Evaluator:
 
     def _evaluate_contrastive_batch(self, embeddings, targets) -> Dict[str, Any]:
         
-        num_classes = len(torch.unique(targets))
-        y_true = targets.numpy()
-
-        # compare embeddigns against themselves
-        pred_indices, _ = self.knn_predict(
-            queries=embeddings.to(self.device),
-            bank=embeddings.to(self.device),
-            bank_labels=targets.to(self.device),
-            classes=num_classes,
-            knn_k=max(self.k_list),
-            knn_t=0.1,
-            space=self.space,
-            hyp_c=self.hyp_c,
-            is_self_comparison=True
-        )
+        num_classes = len(NineClassesLabel.class_ids())
+        y_true = targets.cpu().numpy()
 
         metrics = {}
-        # Calculate accuracy for different K
+        
+        # Calculate accuracy for different K values
         for k in self.k_list:
-            top_k_preds = pred_indices[:, 0].cpu().numpy() # Top 1 prediction from k-sized bank
-            metrics[f"eval/knn_acc@{k}"] = accuracy_score(y_true, top_k_preds)
+            current_k = min(k,len(embeddings)-1)
+
+            # compare embeddigns against themselves
+            pred_indices, _ = self.knn_predict(
+                queries=embeddings.to(self.device),
+                bank=embeddings.to(self.device),
+                bank_labels=targets.to(self.device),
+                classes=num_classes,
+                knn_k=current_k,
+                knn_t=0.1,
+                space=self.space,
+                hyp_c=self.hyp_c,
+                is_self_comparison=True
+            )
+
+            # Top1 class prediction
+            top1_pred = pred_indices[:, 0].cpu().numpy()
+            metrics[f"eval/knn_acc@{k}"] = accuracy_score(y_true, top1_pred)
 
         # Include raw recall
         recall_results = self._recall_dict(embeddings, targets, return_dict=True)

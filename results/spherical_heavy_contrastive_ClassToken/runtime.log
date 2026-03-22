@@ -1,0 +1,9 @@
+2026-03-22 12:49:15.075 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-22 12:49:15.075 | INFO     | __main__:main:30 - 🚀 Experiment: spherical_heavy_contrastive_ClassToken | Mode: CONTRASTIVE | Space: spherical
+2026-03-22 12:49:19.194 | INFO     | src.data.sampler:get_sampler:104 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-22 12:49:19.197 | WARNING  | src.data.sampler:get_sampler:123 - Sampler overriding config batch_size! New batch_size: 9 (9 classes * 1 per class)
+2026-03-22 12:49:24.709 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for spherical space
+2026-03-22 12:49:24.716 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-22 12:49:32.488 | INFO     | src.trainer:__init__:90 - Trainer Initialized | Mode: CONTRASTIVE | Space: SPHERICAL (c=0.0) | Model: GeometricModel
+2026-03-22 12:49:33.006 | INFO     | src.trainer:__init__:99 - Trainer initialized for CONTRASTIVE-SPHERICAL-GEOMETRICMODEL
+2026-03-22 12:49:33.007 | INFO     | src.trainer:fit:405 - >>> STARTING STANDARD TRAINING
