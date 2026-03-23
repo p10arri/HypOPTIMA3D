@@ -38,3 +38,34 @@
 2026-03-22 11:50:49.074 | INFO     | src.trainer:evaluate:283 - Epoch 47 | Eval Score (SUPERVISED): 0.2693
 2026-03-22 11:50:49.077 | INFO     | src.trainer:save_checkpoint:162 - New best model found! Score: 0.2693
 2026-03-22 12:26:30.908 | INFO     | src.trainer:evaluate:283 - Epoch 49 | Eval Score (SUPERVISED): 0.2064
+2026-03-22 13:02:19.932 | INFO     | src.trainer:evaluate:283 - Epoch 51 | Eval Score (SUPERVISED): 0.2307
+2026-03-22 13:37:49.818 | INFO     | src.trainer:evaluate:283 - Epoch 53 | Eval Score (SUPERVISED): 0.2592
+2026-03-22 14:13:24.306 | INFO     | src.trainer:evaluate:283 - Epoch 55 | Eval Score (SUPERVISED): 0.2315
+2026-03-22 14:48:55.469 | INFO     | src.trainer:evaluate:283 - Epoch 57 | Eval Score (SUPERVISED): 0.2424
+2026-03-22 15:24:26.202 | INFO     | src.trainer:evaluate:283 - Epoch 59 | Eval Score (SUPERVISED): 0.3020
+2026-03-22 15:24:26.204 | INFO     | src.trainer:save_checkpoint:162 - New best model found! Score: 0.3020
+2026-03-22 16:00:04.222 | INFO     | src.trainer:evaluate:283 - Epoch 61 | Eval Score (SUPERVISED): 0.2433
+2026-03-22 16:35:32.398 | INFO     | src.trainer:evaluate:283 - Epoch 63 | Eval Score (SUPERVISED): 0.2576
+2026-03-22 17:11:02.454 | INFO     | src.trainer:evaluate:283 - Epoch 65 | Eval Score (SUPERVISED): 0.3029
+2026-03-22 17:11:02.457 | INFO     | src.trainer:save_checkpoint:162 - New best model found! Score: 0.3029
+2026-03-22 17:46:35.490 | INFO     | src.trainer:evaluate:283 - Epoch 67 | Eval Score (SUPERVISED): 0.2450
+2026-03-22 18:22:05.462 | INFO     | src.trainer:evaluate:283 - Epoch 69 | Eval Score (SUPERVISED): 0.2466
+2026-03-22 18:57:34.811 | INFO     | src.trainer:evaluate:283 - Epoch 71 | Eval Score (SUPERVISED): 0.2424
+2026-03-23 15:02:35.129 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-23 15:02:35.130 | INFO     | __main__:main:30 - 🚀 Experiment: EucViT_Normal_Supervised_ClassToken | Mode: SUPERVISED | Space: euclidean
+2026-03-23 15:02:38.705 | INFO     | src.data.sampler:get_sampler:127 - Using standard PyTorch random sampling
+2026-03-23 15:02:43.358 | INFO     | src.losses:get_loss:20 - Using CrossEntropyLoss for Supervised Classification
+2026-03-23 15:02:43.362 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-23 15:02:49.298 | INFO     | src.trainer:__init__:90 - Trainer Initialized | Mode: SUPERVISED | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-23 15:02:49.805 | INFO     | src.trainer:__init__:99 - Trainer initialized for SUPERVISED-EUCLIDEAN-GEOMETRICMODEL
+2026-03-23 15:02:49.805 | INFO     | src.trainer:fit:405 - >>> STARTING STANDARD TRAINING
+2026-03-23 15:02:49.807 | INFO     | src.trainer:train:304 - Resuming training from latest model of run: EucViT_Normal_Supervised_ClassToken
+2026-03-23 15:03:17.214 | INFO     | src.trainer:load_checkpoint:210 - Checkpoint loaded successfully! 
+ Resumed from epoch 72(Previous Best Score: 0.3029)
+2026-03-23 15:49:58.096 | INFO     | src.trainer:evaluate:292 - Epoch 73 | Eval Score (SUPERVISED): 0.2282
+2026-03-23 16:36:36.543 | INFO     | src.trainer:evaluate:292 - Epoch 75 | Eval Score (SUPERVISED): 0.2055
+2026-03-23 17:23:05.979 | INFO     | src.trainer:evaluate:292 - Epoch 77 | Eval Score (SUPERVISED): 0.2424
+2026-03-23 18:09:36.004 | INFO     | src.trainer:evaluate:292 - Epoch 79 | Eval Score (SUPERVISED): 0.2332
+2026-03-23 18:56:15.498 | INFO     | src.trainer:evaluate:292 - Epoch 81 | Eval Score (SUPERVISED): 0.2458
+2026-03-23 19:42:51.608 | INFO     | src.trainer:evaluate:292 - Epoch 83 | Eval Score (SUPERVISED): 0.2802
+2026-03-23 20:29:25.501 | INFO     | src.trainer:evaluate:292 - Epoch 85 | Eval Score (SUPERVISED): 0.2777

@@ -52,6 +52,8 @@ def main(cfg: DictConfig):
         # Override config
         cfg.wandb.mode = "disabled"
         cfg.results_path = "results/dev_trash"
+        cfg.model_path = "results/dev_trash/models"
+        cfg.logs_path = "results/dev_trash/logs"
         
         # Create subset
         train_ds, val_ds = loader.build_stratified_subsets(samples_per_class=2)

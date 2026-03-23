@@ -11,6 +11,7 @@ model:
   mlp_ratio: 4.0
   qkv_bias: true
   qk_scale: null
+  use_grad_checkpoint: true
   drop_rate: 0.1
   attn_drop_rate: 0.0
   drop_path_rate: 0.1
@@ -46,7 +47,7 @@ trainer:
   epochs: 200
   eval_frequency: 2
   early_stopping_patience: 30
-  resume_from: null
+  resume_from: true
 results_path: results/
 model_path: ${hydra:run.dir}/models
 logs_path: ${hydra:run.dir}/logs

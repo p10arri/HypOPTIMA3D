@@ -3,21 +3,6 @@
 # Exit immediately if a command fails
 set -e
 
-
-
-### ----------------- RUN ONE EXPERIMENT -----------------
-# echo "🚀 Starting One Experiment Suite..."
-#
-# python main.py experiment=BaselineViTNormal \
-#     model=baseline \
-#     model.encoder.params.encoder_version="vit_small_patch16_224.augreg_in21k" \
-#     model.encoder.params.encoder_variant="vit" \
-#     space=euclidean \
-#     augmentations=normal\
-#     model.optimizer_params.classification.euclidean.lr=1e-4 \
-#     optimizer.weight_decay=1e-4 \
-# echo "🎉 Experiment completed successfully!"
-
 ### ----------------- RUN MULTIPLE EXPERIMENT -----------------
 
 echo "🚀 Starting Experiment Suite..."

@@ -9,3 +9,35 @@
 2026-03-22 11:11:43.114 | INFO     | src.trainer:fit:396 - >>> STARTING STANDARD TRAINING
 2026-03-22 12:15:28.140 | INFO     | src.trainer:evaluate:283 - Epoch 1 | Eval Score (CONTRASTIVE): 0.0000
 2026-03-22 12:15:28.143 | INFO     | src.trainer:save_checkpoint:162 - New best model found! Score: 0.0000
+2026-03-22 13:19:07.676 | INFO     | src.trainer:evaluate:283 - Epoch 3 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 14:22:37.089 | INFO     | src.trainer:evaluate:283 - Epoch 5 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 15:26:04.298 | INFO     | src.trainer:evaluate:283 - Epoch 7 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 16:29:40.761 | INFO     | src.trainer:evaluate:283 - Epoch 9 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 17:33:23.586 | INFO     | src.trainer:evaluate:283 - Epoch 11 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 18:37:20.502 | INFO     | src.trainer:evaluate:283 - Epoch 13 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 19:41:19.042 | INFO     | src.trainer:evaluate:283 - Epoch 15 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 20:45:30.090 | INFO     | src.trainer:evaluate:283 - Epoch 17 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 21:49:33.535 | INFO     | src.trainer:evaluate:283 - Epoch 19 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 22:53:44.011 | INFO     | src.trainer:evaluate:283 - Epoch 21 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-22 23:58:09.004 | INFO     | src.trainer:evaluate:283 - Epoch 23 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 01:02:33.190 | INFO     | src.trainer:evaluate:283 - Epoch 25 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 02:07:06.197 | INFO     | src.trainer:evaluate:283 - Epoch 27 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 03:11:35.882 | INFO     | src.trainer:evaluate:283 - Epoch 29 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 04:16:07.138 | INFO     | src.trainer:evaluate:283 - Epoch 31 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 05:20:38.558 | INFO     | src.trainer:evaluate:283 - Epoch 33 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 06:25:15.816 | INFO     | src.trainer:evaluate:283 - Epoch 35 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 07:29:49.391 | INFO     | src.trainer:evaluate:283 - Epoch 37 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 08:34:22.994 | INFO     | src.trainer:evaluate:283 - Epoch 39 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 09:38:49.395 | INFO     | src.trainer:evaluate:283 - Epoch 41 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 10:43:26.098 | INFO     | src.trainer:evaluate:283 - Epoch 43 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 11:48:06.383 | INFO     | src.trainer:evaluate:283 - Epoch 45 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 12:52:45.193 | INFO     | src.trainer:evaluate:283 - Epoch 47 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 13:57:32.766 | INFO     | src.trainer:evaluate:283 - Epoch 49 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 15:02:17.639 | INFO     | src.trainer:evaluate:283 - Epoch 51 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 16:07:00.310 | INFO     | src.trainer:evaluate:283 - Epoch 53 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 17:11:51.204 | INFO     | src.trainer:evaluate:283 - Epoch 55 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 18:16:35.498 | INFO     | src.trainer:evaluate:283 - Epoch 57 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 19:21:20.044 | INFO     | src.trainer:evaluate:283 - Epoch 59 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 20:26:02.846 | INFO     | src.trainer:evaluate:283 - Epoch 61 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-23 20:26:08.923 | WARNING  | src.trainer:train:365 - Early stopping triggered at epoch 61
+2026-03-23 20:26:08.924 | INFO     | src.trainer:train:369 - Training Stage full_training Completed.
