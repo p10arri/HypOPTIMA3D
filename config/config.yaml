@@ -1,12 +1,12 @@
 defaults:
   - space: euclidean                    # options: euclidean, spherical, hyperbolic
   - model: vit3d                        # options: vit3d
-  - augmentations: oct_classifier       # options: oct_classifier, normal, heavy
+  - augmentations: normal               # options: oct_classifier, normal, heavy
   - _self_
 
 # ------------------ Experiment Settings ----------------
 experiment: ??? # name of the experiment
-fast_dev_run: True       # Set to true for a 1-epoch sanity check
+fast_dev_run: False       # Set to true for a 1-epoch sanity check
 seed: 42
 grad_clip: 1.0
 device: "cuda"

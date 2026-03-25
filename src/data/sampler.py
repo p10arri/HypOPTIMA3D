@@ -8,6 +8,28 @@ from loguru import logger
 
 from src.utils.enums import TrainingMode, NineClassesLabel, Space
 
+def extract_raw_labels(ds):
+        # Handle Subsets (Recursive)
+        if isinstance(ds, torch.utils.data.Subset):
+            full_labels = extract_raw_labels(ds.dataset)
+            return full_labels[ds.indices]
+        
+        #  OCTMNIST
+        if hasattr(ds, 'labels'):
+            # Labels are (N, 1), flatten to (N,)
+            return np.array(ds.labels).flatten()
+            
+        # Standard ImageFolder / Custom with get_labels()
+        if hasattr(ds, 'get_labels'):
+            return np.array(ds.get_labels())
+            
+        # Standard Torchvision datasets
+        if hasattr(ds, 'targets'):
+            return np.array(ds.targets)
+            
+        raise AttributeError(f"Dataset of type {type(ds)} has no recognizable label attribute (.labels, .targets, or .get_labels())")
+
+ 
 def get_labels_to_indices(labels: Sequence) -> Dict[Any, np.ndarray]:
     """Maps each unique label to an array of indices for that label."""
     if torch.is_tensor(labels):
@@ -104,13 +126,7 @@ class SamplerFactory:
             logger.info(f"Assigning AllClassesKSampler for {training_mode.name} mode")
             
             k_val = cfg.data.sampling.m_per_class
-            
-            # Subset for fast_dev
-            if isinstance(dataset, torch.utils.data.Subset):
-                all_labels = dataset.dataset.get_labels()
-                labels = [all_labels[i] for i in dataset.indices]
-            else:
-                labels = dataset.get_labels()
+            labels = extract_raw_labels(dataset)
             
             batch_sampler = AllClassesKSampler(
                 labels=labels, 
@@ -120,7 +136,7 @@ class SamplerFactory:
             # Log the effective batch size to avoid OOM surprises
             effective_bs = batch_sampler.batch_size
             if effective_bs != cfg.data.batch_size:
-                logger.warning(f"Sampler overriding config batch_size! New batch_size: {effective_bs} ({NineClassesLabel.num_classes()} classes * {k_val} per class)")
+                logger.warning(f"Sampler overriding config batch_size! New batch_size: {effective_bs} ({len(batch_sampler.all_classes)} classes found in dataset * {k_val} per class)")
 
         else:
             # Standard SUPERVISED Euclidean training

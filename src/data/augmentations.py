@@ -10,6 +10,31 @@ import random
 
 from src.utils.enums import Augmentation, TrainingMode
 
+
+def get_augmentations2D(transform_size: int, aug_mode: str = None, training_mode: TrainingMode = None):
+    train_3d, test_3d = get_augmentations(transform_size, aug_mode, training_mode)
+    
+    # Wrap augmentations so they accept PIL images and return Tensors
+    train_transform = ImageToVolumeBridge(train_3d)
+    test_transform = ImageToVolumeBridge(test_3d)
+    
+    return train_transform, test_transform
+
+class ImageToVolumeBridge:
+    """Converts a 2D PIL Image to a 3D-like Tensor for VolumeTransform compatibility."""
+    def __init__(self, transform):
+        self.transform = transform
+        self.to_tensor = transforms.ToTensor()
+
+    def __call__(self, pic):
+        # 1. Convert PIL to Tensor [C, H, W]
+        img_tensor = self.to_tensor(pic)
+        # 2. Add depth dimension [C, 1, H, W]
+        volume_like = img_tensor.unsqueeze(1)
+        # 3. Apply the existing Volume-based Transform
+        return self.transform(volume_like)
+    
+
 def get_augmentations(transform_size: int, aug_mode: str = None, training_mode: TrainingMode = None):
     two_views = False
     train_transform = None
@@ -57,7 +82,7 @@ class VolumeTransform:
             processed_slices.append(self.transform(s))
         
         return torch.stack(processed_slices, dim=1)
-
+    
 class NormalTrainTransform(object):
     def __init__(self, transform_size=224, two_views: bool = False):
         self.two_views = two_views

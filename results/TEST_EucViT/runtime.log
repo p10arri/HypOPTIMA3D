@@ -1,0 +1,691 @@
+2026-03-25 16:15:40.584 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 16:15:40.584 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 16:18:55.687 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 16:18:55.687 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 16:18:55.687 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 16:19:24.840 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 16:19:24.840 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 16:19:24.841 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 16:20:17.814 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 16:20:17.814 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 16:20:17.814 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 16:20:20.542 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 16:37:44.759 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 16:37:44.759 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 16:37:44.759 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 16:37:45.419 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 16:40:43.335 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 16:40:43.336 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 16:40:43.336 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 16:40:44.009 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 16:40:44.183 | INFO     | src.data.sampler:get_sampler:104 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:00:09.929 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:00:09.929 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:00:09.929 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:00:10.588 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:00:10.712 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:00:10.713 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (9 classes * 2 per class)
+2026-03-25 17:00:12.644 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:00:13.920 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:00:13.945 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:00:13.945 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:00:13.950 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:00:13.981 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:00:13.983 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:00:17.023 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:00:17.320 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:00:17.320 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:00:17.320 | INFO     | src.trainer:fit:412 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:02:47.724 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:02:47.724 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:02:47.724 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:02:48.445 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:02:48.623 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:02:48.624 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (9 classes * 2 per class)
+2026-03-25 17:02:50.073 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:02:51.270 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:02:51.305 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:02:51.306 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:02:51.310 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:02:51.323 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:02:51.325 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:02:53.563 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:02:53.640 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:02:53.641 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:02:53.641 | INFO     | src.trainer:fit:415 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:07:15.718 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:07:15.718 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:07:15.718 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:07:16.389 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:07:16.562 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:07:16.562 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (9 classes * 2 per class)
+2026-03-25 17:07:20.594 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:07:23.015 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:07:23.052 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:07:23.052 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:07:23.057 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:07:23.075 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:07:23.078 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:07:26.083 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:07:26.138 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:07:26.138 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:07:26.138 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:10:10.069 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:10:10.070 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:10:10.070 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:10:10.748 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:10:11.089 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:10:11.090 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (9 classes * 2 per class)
+2026-03-25 17:10:13.373 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:10:16.437 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:10:17.043 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:10:17.044 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:10:17.050 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:10:17.069 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:10:17.072 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:10:20.550 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:10:20.608 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:10:20.609 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:10:20.609 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:19:20.954 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:19:20.954 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:19:20.954 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:19:21.625 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:19:21.882 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:19:21.882 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (9 classes * 2 per class)
+2026-03-25 17:19:23.642 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:19:25.025 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:19:25.101 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:19:25.101 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:19:25.106 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:19:25.129 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:19:25.132 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:19:28.333 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:19:28.408 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:19:28.409 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:19:28.409 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:22:50.434 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:22:50.434 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:22:50.434 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:22:51.143 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:22:51.342 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:22:51.343 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (9 classes * 2 per class)
+2026-03-25 17:22:54.143 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:22:55.953 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:22:56.260 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:22:56.260 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:22:56.267 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:22:56.288 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:22:56.291 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:23:00.935 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:23:01.037 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:23:01.037 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:23:01.037 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:28:49.792 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:28:49.792 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:28:49.792 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:28:50.473 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:29:49.490 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:29:49.490 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:29:49.490 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:29:50.183 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:29:50.420 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:29:50.421 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 6 (9 classes * 2 per class)
+2026-03-25 17:29:55.578 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:29:58.934 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:29:59.013 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:29:59.013 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:29:59.019 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:29:59.063 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:29:59.066 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:30:01.142 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:30:01.216 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:30:01.216 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:30:01.217 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:33:52.578 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:33:52.578 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:33:52.578 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:33:53.247 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:33:53.414 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:33:53.414 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 6 (3 classes found in dataset * 2 per class)
+2026-03-25 17:33:55.563 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:33:56.934 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:33:57.042 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:33:57.042 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:33:57.047 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:33:57.068 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:33:57.070 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:34:00.469 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:34:00.941 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:34:00.941 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:34:00.941 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:35:55.972 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:35:55.972 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:35:55.972 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:35:56.683 | WARNING  | __main__:main:67 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:37:12.931 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:37:12.931 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:37:12.931 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:39:37.986 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:39:37.987 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:39:37.987 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:39:38.943 | WARNING  | __main__:main:75 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:39:38.971 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:39:38.972 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 6 (3 classes found in dataset * 2 per class)
+2026-03-25 17:39:40.466 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:39:42.127 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:39:42.186 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:39:42.186 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:39:42.194 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:39:42.212 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:39:42.216 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:39:43.768 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:39:43.829 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:39:43.829 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:39:43.829 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:42:52.947 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:42:52.947 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:42:52.947 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:42:53.856 | WARNING  | __main__:main:75 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:42:53.858 | INFO     | __main__:main:85 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 17:42:53.885 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:42:53.886 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 6 (3 classes found in dataset * 2 per class)
+2026-03-25 17:42:56.435 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:42:57.863 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:42:57.916 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:42:57.916 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:42:57.921 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:42:57.939 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:42:57.942 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:43:02.759 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:43:03.085 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:43:03.085 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:43:03.085 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:49:36.426 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:49:36.427 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:49:36.427 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:49:59.564 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:49:59.564 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:49:59.564 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:50:00.494 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 17:50:00.495 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:50:00.498 | INFO     | __main__:main:86 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 17:50:00.526 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:50:00.527 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 6 (3 classes found in dataset * 2 per class)
+2026-03-25 17:50:06.183 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:50:07.766 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:50:07.854 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:50:07.855 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:50:07.859 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:50:07.890 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:50:07.893 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:50:09.887 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:50:10.007 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:50:10.008 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:50:10.008 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:52:00.327 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:52:00.327 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:52:00.327 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:52:01.268 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 17:52:01.268 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:52:01.271 | INFO     | __main__:main:86 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 17:52:01.298 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:52:01.298 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 17:52:05.085 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:52:06.900 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:52:06.959 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:52:06.960 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:52:06.967 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:52:06.996 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:52:07.000 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:52:09.003 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:52:09.403 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:52:09.404 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:52:09.404 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:54:48.402 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:54:48.402 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:54:48.402 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:54:49.302 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 17:54:49.302 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:54:49.304 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 17:54:49.305 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 17:54:49.333 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:54:49.333 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 17:54:50.691 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:54:52.033 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:54:52.068 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:54:52.068 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:54:52.073 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:54:52.102 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:54:52.105 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:54:53.584 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:54:53.672 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:54:53.672 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:54:53.672 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:55:55.542 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:55:55.542 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:55:55.542 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:55:56.365 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 17:55:56.366 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:55:56.371 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 17:55:56.372 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 17:55:56.399 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:55:56.399 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 17:55:57.869 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:55:59.135 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:55:59.161 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:55:59.161 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:55:59.166 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:55:59.196 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:55:59.200 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:56:03.109 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:56:03.184 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:56:03.185 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:56:03.185 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 17:58:26.800 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:58:26.800 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 17:58:26.800 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 17:58:27.662 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 17:58:27.662 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 17:58:27.664 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 17:58:27.665 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 17:58:27.692 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 17:58:27.693 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 17:58:32.612 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 17:58:35.617 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 17:58:35.648 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 17:58:35.648 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 17:58:35.654 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 17:58:35.679 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 17:58:35.682 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 17:58:36.785 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 17:58:36.855 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 17:58:36.855 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 17:58:36.855 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:01:36.331 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:01:36.331 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:01:36.332 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:01:37.114 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:01:37.115 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:01:37.118 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:01:37.118 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:01:37.146 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:01:37.147 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:01:38.675 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:01:39.955 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:01:39.988 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:01:39.988 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:01:39.995 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:01:40.015 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:01:40.018 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:01:44.129 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 18:01:44.445 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:01:44.446 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:01:44.446 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:06:16.669 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:06:16.669 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:06:16.669 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:06:17.543 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:06:17.543 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:06:17.546 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:06:17.546 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:06:17.573 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:06:17.574 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:06:19.668 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:06:20.971 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:06:21.091 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:06:21.092 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:06:21.097 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:06:21.123 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:06:21.126 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:06:22.937 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 18:06:23.029 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:06:23.029 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:06:23.030 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:07:48.797 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:07:48.798 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:07:48.798 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:07:49.637 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:07:49.638 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:07:49.641 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:07:49.641 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:07:49.679 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:07:49.679 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:07:51.940 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:07:54.010 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:07:54.173 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:07:54.173 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:07:54.180 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:07:54.205 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:07:54.208 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:07:56.381 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 18:07:56.467 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:07:56.467 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:07:56.467 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:08:39.161 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:08:39.161 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:08:39.161 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:08:40.022 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:08:40.022 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:08:40.024 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:08:40.025 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:08:40.051 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:08:40.051 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:08:41.854 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:08:43.066 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:08:43.121 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:08:43.121 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:08:43.128 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:08:43.152 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:08:43.154 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:08:44.237 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 18:08:44.351 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:08:44.351 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:08:44.351 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:12:02.505 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:12:02.506 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:12:02.506 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:12:03.394 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:12:03.394 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:12:03.397 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:12:03.397 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:12:03.428 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:12:03.429 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:12:08.817 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:12:13.050 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:12:13.756 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:12:13.762 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:12:13.766 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:12:13.794 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:12:13.796 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:12:16.363 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 18:12:16.435 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:12:16.435 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:12:16.435 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:16:31.318 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:16:31.318 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:16:31.318 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:16:32.275 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:16:32.276 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:16:32.278 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:16:32.279 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:16:32.309 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:16:32.309 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:16:36.211 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:16:37.608 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:16:37.690 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:16:37.691 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:16:37.695 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:16:37.724 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:16:37.727 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:16:41.582 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 18:16:41.651 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:16:41.651 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:16:41.651 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:19:42.681 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:19:42.681 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:19:42.681 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:19:43.606 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:19:43.607 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:19:43.610 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:19:43.610 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:19:43.638 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:19:43.639 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:19:45.807 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:19:47.307 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:19:47.450 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:19:47.451 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:19:47.456 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:19:47.476 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:19:47.479 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:19:51.057 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 18:19:51.123 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:19:51.124 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:19:51.124 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:24:04.921 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:24:04.921 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:24:04.921 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:24:05.834 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:24:05.834 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:24:05.837 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:24:05.837 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:24:05.865 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:24:05.865 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:24:11.466 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:24:15.882 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:24:16.549 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:24:16.549 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:24:16.554 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:24:16.580 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:24:16.582 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:24:18.149 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 18:24:18.221 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:24:18.222 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:24:18.222 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:29:36.749 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:29:36.749 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:29:36.749 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:29:37.668 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:29:37.668 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:29:37.671 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:29:37.671 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:29:37.699 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:29:37.700 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:29:39.365 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:29:40.763 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:29:40.807 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:29:40.808 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:29:40.816 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:29:40.848 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:29:40.852 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:29:43.692 | INFO     | src.trainer:__init__:93 - Fast dev run: Model saving directory creation skipped.
+2026-03-25 18:29:43.762 | INFO     | src.trainer:__init__:96 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:29:43.762 | INFO     | src.trainer:__init__:105 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:29:43.762 | INFO     | src.trainer:fit:422 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:30:04.315 | INFO     | src.trainer:evaluate:309 - Epoch 1 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 18:30:04.318 | INFO     | src.trainer:save_checkpoint:177 - New best model found! Score: 0.0000
+2026-03-25 18:30:04.318 | DEBUG    | src.trainer:save_checkpoint:180 - Fast dev run enabled: Skipping checkpoint file generation.
+2026-03-25 18:30:11.960 | INFO     | src.trainer:evaluate:309 - Epoch 3 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 18:30:11.963 | DEBUG    | src.trainer:save_checkpoint:180 - Fast dev run enabled: Skipping checkpoint file generation.
+2026-03-25 18:30:15.583 | INFO     | src.trainer:train:395 - Training Stage full_training Completed.
+2026-03-25 18:30:15.583 | SUCCESS  | __main__:main:156 - Pretraining stage completed
+2026-03-25 18:30:15.583 | INFO     | __main__:main:161 - Transitioning to Fine-tuning Stage (OPTIMA 3D)...
+2026-03-25 18:30:15.789 | WARNING  | __main__:main:196 - ⚠️ FAST DEV RUN: Subsetting 3D Dataset
+2026-03-25 18:30:16.670 | INFO     | src.data.sampler:get_sampler:143 - Using standard PyTorch random sampling
+2026-03-25 18:30:18.895 | INFO     | src.model.vit3d:load_pretrained:214 - Loading ViT3D weights from local checkpoint: results/TEST_EucViT/models/pretrain/best_model.pt
+2026-03-25 18:32:04.849 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:32:04.850 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:32:04.850 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:32:05.683 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:32:05.684 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:32:05.688 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:32:05.688 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:32:05.728 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:32:05.729 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:32:09.036 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:32:10.713 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:32:10.780 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:32:10.780 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:32:10.787 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:32:10.818 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:32:10.822 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:32:15.157 | INFO     | src.trainer:__init__:97 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:32:15.158 | INFO     | src.trainer:__init__:106 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:32:15.158 | INFO     | src.trainer:fit:423 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:32:33.998 | INFO     | src.trainer:evaluate:310 - Epoch 1 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 18:32:33.999 | INFO     | src.trainer:save_checkpoint:178 - New best model found! Score: 0.0000
+2026-03-25 18:32:33.999 | DEBUG    | src.trainer:save_checkpoint:181 - Fast dev run enabled: Skipping checkpoint file generation.
+2026-03-25 18:32:41.843 | INFO     | src.trainer:evaluate:310 - Epoch 3 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 18:32:41.845 | DEBUG    | src.trainer:save_checkpoint:181 - Fast dev run enabled: Skipping checkpoint file generation.
+2026-03-25 18:32:45.304 | INFO     | src.trainer:train:396 - Training Stage full_training Completed.
+2026-03-25 18:32:45.304 | SUCCESS  | __main__:main:156 - Pretraining stage completed
+2026-03-25 18:32:45.304 | INFO     | __main__:main:161 - Transitioning to Fine-tuning Stage (OPTIMA 3D)...
+2026-03-25 18:32:45.425 | WARNING  | __main__:main:196 - ⚠️ FAST DEV RUN: Subsetting 3D Dataset
+2026-03-25 18:32:45.634 | INFO     | src.data.sampler:get_sampler:143 - Using standard PyTorch random sampling
+2026-03-25 18:32:47.107 | INFO     | src.model.vit3d:load_pretrained:214 - Loading ViT3D weights from local checkpoint: results/TEST_EucViT/models/pretrain/best_model.pt
+2026-03-25 18:34:58.928 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:34:58.928 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:34:58.929 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:34:59.836 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:34:59.836 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:34:59.839 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:34:59.839 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:34:59.864 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:34:59.864 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:35:02.001 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:35:03.347 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:35:03.554 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:35:03.554 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:35:03.559 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:35:03.589 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:35:03.591 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:35:08.100 | INFO     | src.trainer:__init__:97 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:35:08.101 | INFO     | src.trainer:__init__:106 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:35:08.101 | INFO     | src.trainer:fit:423 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:35:21.173 | INFO     | src.trainer:evaluate:310 - Epoch 1 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 18:35:21.175 | INFO     | src.trainer:save_checkpoint:178 - New best model found! Score: 0.0000
+2026-03-25 18:35:49.729 | INFO     | src.trainer:evaluate:310 - Epoch 3 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 18:36:06.095 | INFO     | src.trainer:train:396 - Training Stage full_training Completed.
+2026-03-25 18:36:06.096 | SUCCESS  | __main__:main:156 - Pretraining stage completed
+2026-03-25 18:36:06.097 | INFO     | __main__:main:161 - Transitioning to Fine-tuning Stage (OPTIMA 3D)...
+2026-03-25 18:36:06.248 | WARNING  | __main__:main:196 - ⚠️ FAST DEV RUN: Subsetting 3D Dataset
+2026-03-25 18:36:06.494 | INFO     | src.data.sampler:get_sampler:143 - Using standard PyTorch random sampling
+2026-03-25 18:36:08.035 | INFO     | src.model.vit3d:load_pretrained:214 - Loading ViT3D weights from local checkpoint: results/TEST_EucViT/models/pretrain/best_model.pt
+2026-03-25 18:36:09.585 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping epoch: Not present in ViT3D.
+2026-03-25 18:36:09.585 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping global_step: Not present in ViT3D.
+2026-03-25 18:36:09.586 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping best_score: Not present in ViT3D.
+2026-03-25 18:36:09.586 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping model_state_dict: Not present in ViT3D.
+2026-03-25 18:36:09.586 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping optimizer_state_dict: Not present in ViT3D.
+2026-03-25 18:36:09.586 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping scheduler_state_dict: Not present in ViT3D.
+2026-03-25 18:36:09.586 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping config: Not present in ViT3D.
+2026-03-25 18:36:09.590 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 0 parameters from local (3D) source.
+2026-03-25 18:36:09.593 | INFO     | src.losses:get_loss:20 - Using CrossEntropyLoss for Supervised Classification
+2026-03-25 18:36:09.596 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:36:10.202 | INFO     | src.trainer:__init__:97 - Trainer Initialized | Mode: SUPERVISED | Space: EUCLIDEAN (c=0.0) | Model: ViT3D
+2026-03-25 18:36:10.203 | INFO     | src.trainer:__init__:106 - Trainer initialized for SUPERVISED-EUCLIDEAN-VIT3D
+2026-03-25 18:36:10.211 | INFO     | src.trainer:fit:423 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:41:34.155 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:41:34.156 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:41:34.156 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:41:35.049 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:41:35.050 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:41:35.053 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:41:35.053 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:41:35.081 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:41:35.081 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:41:36.867 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:41:40.591 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:41:40.623 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:41:40.623 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:41:40.629 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:41:40.660 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:41:40.663 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:41:44.111 | INFO     | src.trainer:__init__:97 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:41:44.111 | INFO     | src.trainer:__init__:106 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:41:44.111 | INFO     | src.trainer:fit:423 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:42:02.472 | INFO     | src.trainer:evaluate:310 - Epoch 1 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 18:42:02.474 | INFO     | src.trainer:save_checkpoint:178 - New best model found! Score: 0.0000
+2026-03-25 18:42:26.700 | INFO     | src.trainer:evaluate:310 - Epoch 3 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 18:42:36.390 | INFO     | src.trainer:train:396 - Training Stage full_training Completed.
+2026-03-25 18:42:36.391 | SUCCESS  | __main__:main:156 - Pretraining stage completed
+2026-03-25 18:42:36.391 | INFO     | __main__:main:161 - Transitioning to Fine-tuning Stage (OPTIMA 3D)...
+2026-03-25 18:42:36.498 | WARNING  | __main__:main:196 - ⚠️ FAST DEV RUN: Subsetting 3D Dataset
+2026-03-25 18:42:37.450 | INFO     | src.data.sampler:get_sampler:143 - Using standard PyTorch random sampling
+2026-03-25 18:42:38.836 | INFO     | src.model.vit3d:load_pretrained:214 - Loading ViT3D weights from local checkpoint: results/TEST_EucViT/models/pretrain/best_model.pt
+2026-03-25 18:42:40.481 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping epoch: Not present in ViT3D.
+2026-03-25 18:42:40.481 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping global_step: Not present in ViT3D.
+2026-03-25 18:42:40.481 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping best_score: Not present in ViT3D.
+2026-03-25 18:42:40.481 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping model_state_dict: Not present in ViT3D.
+2026-03-25 18:42:40.481 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping optimizer_state_dict: Not present in ViT3D.
+2026-03-25 18:42:40.481 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping scheduler_state_dict: Not present in ViT3D.
+2026-03-25 18:42:40.481 | DEBUG    | src.model.vit3d:load_pretrained:221 - Skipping config: Not present in ViT3D.
+2026-03-25 18:42:40.486 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 0 parameters from local (3D) source.
+2026-03-25 18:42:40.489 | INFO     | src.losses:get_loss:20 - Using CrossEntropyLoss for Supervised Classification
+2026-03-25 18:42:40.492 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:42:40.794 | INFO     | src.trainer:__init__:97 - Trainer Initialized | Mode: SUPERVISED | Space: EUCLIDEAN (c=0.0) | Model: SupervisedViT3D
+2026-03-25 18:42:40.799 | INFO     | src.trainer:__init__:106 - Trainer initialized for SUPERVISED-EUCLIDEAN-SUPERVISEDVIT3D
+2026-03-25 18:42:40.809 | INFO     | src.trainer:fit:423 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:43:03.718 | INFO     | src.trainer:evaluate:310 - Epoch 1 | Eval Score (SUPERVISED): 0.1111
+2026-03-25 18:43:03.719 | INFO     | src.trainer:save_checkpoint:178 - New best model found! Score: 0.1111
+2026-03-25 18:43:42.518 | INFO     | src.trainer:evaluate:310 - Epoch 3 | Eval Score (SUPERVISED): 0.1111
+2026-03-25 18:44:07.045 | INFO     | src.trainer:train:396 - Training Stage full_training Completed.
+2026-03-25 18:44:07.045 | SUCCESS  | __main__:main:242 - ✅ Full Pipeline (Pretrain + Finetune) Completed!
+2026-03-25 18:47:27.964 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:47:27.964 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: TEST_EucViT| Space: euclidean
+2026-03-25 18:47:27.964 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:47:28.782 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:47:28.782 | WARNING  | __main__:main:76 - ⚠️ FAST DEV RUN: Subsetting OCTMNIST
+2026-03-25 18:47:28.784 | INFO     | __main__:main:87 - Found 4 unique classes in raw train_ds: [0 1 2 3]
+2026-03-25 18:47:28.784 | INFO     | __main__:main:88 - Found 4 unique classes in raw val_ds: [0 1 2 3]
+2026-03-25 18:47:28.809 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:47:28.810 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:47:30.499 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:47:31.959 | INFO     | src.model.vit3d:load_pretrained:236 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:47:31.994 | DEBUG    | src.model.vit3d:load_pretrained:229 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:47:31.994 | DEBUG    | src.model.vit3d:load_pretrained:229 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:47:31.999 | INFO     | src.model.vit3d:load_pretrained:256 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:47:32.045 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:47:32.048 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:47:36.867 | INFO     | src.trainer:__init__:97 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:47:36.868 | INFO     | src.trainer:__init__:106 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:47:36.868 | INFO     | src.trainer:fit:423 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:47:51.939 | INFO     | src.trainer:evaluate:310 - Epoch 1 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 18:47:51.941 | INFO     | src.trainer:save_checkpoint:178 - New best model found! Score: 0.0000
+2026-03-25 18:48:10.971 | INFO     | src.trainer:evaluate:310 - Epoch 3 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 18:48:22.742 | INFO     | src.trainer:train:396 - Training Stage full_training Completed.
+2026-03-25 18:48:22.742 | SUCCESS  | __main__:main:156 - Pretraining stage completed
+2026-03-25 18:48:22.742 | INFO     | __main__:main:161 - Transitioning to Fine-tuning Stage (OPTIMA 3D)...
+2026-03-25 18:48:22.849 | WARNING  | __main__:main:196 - ⚠️ FAST DEV RUN: Subsetting 3D Dataset
+2026-03-25 18:48:22.977 | INFO     | src.data.sampler:get_sampler:143 - Using standard PyTorch random sampling
+2026-03-25 18:48:24.448 | INFO     | src.model.vit3d:load_pretrained:214 - Loading ViT3D weights from local checkpoint: results/TEST_EucViT/models/pretrain/best_model.pt
+2026-03-25 18:48:26.307 | WARNING  | src.model.vit3d:load_pretrained:246 - Shape mismatch for depth_embed: torch.Size([1, 1, 768]) vs torch.Size([1, 25, 768]). Skipping.
+2026-03-25 18:48:26.782 | DEBUG    | src.model.vit3d:load_pretrained:229 - Skipping head.head.fc.weight: Not present in ViT3D.
+2026-03-25 18:48:26.788 | INFO     | src.model.vit3d:load_pretrained:256 - Successfully loaded 246 parameters from local (3D) source.
+2026-03-25 18:48:26.924 | INFO     | src.losses:get_loss:20 - Using CrossEntropyLoss for Supervised Classification
+2026-03-25 18:48:26.929 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:48:26.999 | INFO     | src.trainer:__init__:97 - Trainer Initialized | Mode: SUPERVISED | Space: EUCLIDEAN (c=0.0) | Model: SupervisedViT3D
+2026-03-25 18:48:27.000 | INFO     | src.trainer:__init__:106 - Trainer initialized for SUPERVISED-EUCLIDEAN-SUPERVISEDVIT3D
+2026-03-25 18:48:27.010 | INFO     | src.trainer:fit:423 - >>> STARTING STANDARD TRAINING
+2026-03-25 18:48:46.626 | INFO     | src.trainer:evaluate:310 - Epoch 1 | Eval Score (SUPERVISED): 0.1111
+2026-03-25 18:48:46.628 | INFO     | src.trainer:save_checkpoint:178 - New best model found! Score: 0.1111
+2026-03-25 18:49:22.342 | INFO     | src.trainer:evaluate:310 - Epoch 3 | Eval Score (SUPERVISED): 0.1111
+2026-03-25 18:49:38.082 | INFO     | src.trainer:train:396 - Training Stage full_training Completed.
+2026-03-25 18:49:38.082 | SUCCESS  | __main__:main:242 - ✅ Full Pipeline (Pretrain + Finetune) Completed!

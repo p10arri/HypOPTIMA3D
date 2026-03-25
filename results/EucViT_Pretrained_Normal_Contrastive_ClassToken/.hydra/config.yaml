@@ -23,7 +23,7 @@ augmentations:
   name: heavy
   _transform_class_: HeavyTrainTransform
   transform_size: ${hydra:data.image_size}
-experiment: EucViT_Normal_Contrastive_ClassToken
+experiment: EucViT_Pretrained_Normal_Contrastive_ClassToken
 fast_dev_run: false
 seed: 42
 grad_clip: 1.0

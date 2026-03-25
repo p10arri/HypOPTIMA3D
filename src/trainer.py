@@ -41,7 +41,8 @@ class Trainer:
         loss_fn: nn.Module,
         train_loader: DataLoader, 
         eval_loader: DataLoader,
-        scheduler: Optional[_LRScheduler] = None
+        scheduler: Optional[_LRScheduler] = None,
+        stage_name: str = "",
     ):
 
         self.cfg = cfg
@@ -78,13 +79,19 @@ class Trainer:
 
         # Paths
         self.resume_from = cfg.trainer.resume_from
-        self.model_save_path = Path(cfg.model_path)
-        
-        # Dont store models if fast_dev_run enabled
-        if not cfg.get("fast_dev_run", False):
-            self.model_save_path.mkdir(parents=True, exist_ok=True)
+        base_path = Path(cfg.model_path)
+        if stage_name:
+            self.cfg.wandb.run_name = self.cfg.wandb.run_name + f"_{stage_name}"
+            self.model_save_path = base_path / stage_name
         else:
-            logger.info("Fast dev run: Model saving directory creation skipped.")
+            self.model_save_path = base_path
+        
+        self.model_save_path.mkdir(parents=True, exist_ok=True)
+        # # Dont store models if fast_dev_run enabled # Store weitgths for finetuning
+        # if not cfg.get("fast_dev_run", False):
+        #     self.model_save_path.mkdir(parents=True, exist_ok=True)
+        # else:
+        #     logger.info("Fast dev run: Model saving directory creation skipped.")
 
         self._setup_wandb()
         logger.info(
@@ -114,6 +121,7 @@ class Trainer:
                 resolve=True,
                 # throw_on_missing=True,
             ),
+            
         ) 
         wandb.define_metric("epoch")
         wandb.define_metric("train/*", step_metric="global_step")
@@ -121,12 +129,15 @@ class Trainer:
 
 
     def _move_batch_to_device(self, batch: Dict[str, torch.Tensor]):
-        for key,value in batch.items():
-            if isinstance(value, torch.Tensor):
-                batch[key] = value.to(self.device, non_blocking=True)
-            elif isinstance(value, list): # two augmented views
-                batch[key] = [v.to(self.device, non_blocking=True) if isinstance(v, torch.Tensor) else v 
-                              for v in value]
+        """Move a batch (dict, list, or tensor) to the target device."""
+        if isinstance(batch, torch.Tensor):
+            return batch.to(self.device)
+        elif isinstance(batch, dict):
+            return {k: self._move_batch_to_device(v) for k, v in batch.items()}
+        
+        elif isinstance(batch, (list, tuple)): #two_views
+            return [self._move_batch_to_device(v) for v in batch]
+        
         return batch
 
     def adjust_learning_rate(self, epoch: int, max_epoch: int): 
@@ -166,9 +177,9 @@ class Trainer:
             self.best_score = current_score
             logger.info(f"New best model found! Score: {current_score:.4f}")
 
-        if self.cfg.get("fast_dev_run", False):
-            logger.debug("Fast dev run enabled: Skipping checkpoint file generation.")
-            return is_best
+        # if self.cfg.get("fast_dev_run", False):
+        #     logger.debug("Fast dev run enabled: Skipping checkpoint file generation.")
+        #     return is_best
         
         checkpoint = {
             'epoch': self.current_epoch,
@@ -213,8 +224,15 @@ class Trainer:
     def _train_step(self, batch: Dict[str, torch.Tensor]) -> float:
         self.model.train()
         batch = self._move_batch_to_device(batch)
-        images = batch['img']
-        targets = batch['label']
+
+        # Unpack batch
+        if isinstance(batch, (list, tuple)):
+            # Standard PyTorch/MedMNIST: [data, labels]
+            images, targets = batch[0], batch[1]
+        else:
+            # OPTIMA3D format: {"img": data, "label": labels}
+            images = batch['img']
+            targets = batch['label']
 
         self.optimizer.zero_grad()
 

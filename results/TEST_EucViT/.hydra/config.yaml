@@ -16,15 +16,15 @@ model:
   attn_drop_rate: 0.0
   drop_path_rate: 0.1
   dropout: 0.1
-  skip_class_head: false
-  pretrained: true
+  skip_class_head: true
+  pretrained: false
   checkpoint_path: null
 augmentations:
-  name: heavy
-  _transform_class_: HeavyTrainTransform
+  name: oct_classifier
+  _transform_class_: OCTClassifierTrainTransform
   transform_size: ${hydra:data.image_size}
-experiment: EucViT_Normal_Contrastive_ClassToken
-fast_dev_run: false
+experiment: TEST_EucViT
+fast_dev_run: true
 seed: 42
 grad_clip: 1.0
 device: cuda
@@ -47,7 +47,7 @@ trainer:
   epochs: 200
   eval_frequency: 2
   early_stopping_patience: 30
-  resume_from: false
+  resume_from: null
 results_path: results/
 model_path: ${hydra:run.dir}/models
 logs_path: ${hydra:run.dir}/logs

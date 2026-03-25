@@ -36,8 +36,15 @@ class Evaluator:
         n_samples = 0
 
         for batch in loader:
-            x = batch["img"].to(self.device)
-            targets = batch["label"].to(self.device)
+            # Unpack batch
+            if isinstance(batch, (list, tuple)):
+                x, targets = batch[0], batch[1]
+            else:
+                x = batch["img"]
+                targets = batch["label"]
+
+            x = x.to(self.device)
+            targets = targets.to(self.device)
 
             outputs = model(x)
 
@@ -96,8 +103,12 @@ class Evaluator:
         return metrics
 
     def _evaluate_contrastive_batch(self, embeddings, targets) -> Dict[str, Any]:
+        # num_classes = len(NineClassesLabel.class_ids()) # Not compatible with OCTMNIST 
+        unique_labels = torch.unique(targets)
+        num_classes = int(unique_labels.max().item() + 1)
         
-        num_classes = len(NineClassesLabel.class_ids())
+        print(f" [DEBUG]: Number of classes found in the evaluation stage: {num_classes}")
+
         y_true = targets.cpu().numpy()
 
         metrics = {}
@@ -105,6 +116,9 @@ class Evaluator:
         # Calculate accuracy for different K values
         for k in self.k_list:
             current_k = min(k,len(embeddings)-1)
+
+            if current_k < 1:
+                continue
 
             # compare embeddigns against themselves
             pred_indices, _ = self.knn_predict(
@@ -175,14 +189,21 @@ class Evaluator:
         _, topk_indices = dist_m.topk(max_k, dim=1, largest=True)
         
         # Compute Recall@K
-        y_labels = y_labels.cpu()
+        y_labels = y_labels.view(-1).cpu() 
         topk_labels = y_labels[topk_indices.cpu()] # [N, max_k]
         
         recall_results = {}
         for k in self.k_list:
-            if k <= max_k:
-                # Check if target label is in the top-k predicted labels
-                correct = (y_labels.view(-1, 1) == topk_labels[:, :k]).any(dim=1)
+            actual_k = min(k, topk_labels.size(1))
+            if actual_k <= max_k:
+                # Sliced neighbors: [N, actual_k]
+                current_topk = topk_labels[:, :actual_k]
+                
+                # Ground truth labels expanded to match neighbors: [N, actual_k]
+                gt_expanded = y_labels.view(-1, 1).expand(-1, actual_k)
+                
+                # Check for matches along the neighbor dimension
+                correct = (gt_expanded == current_topk).any(dim=1)
                 recall_results[f"recall@{k}"] = correct.float().mean().item()
 
         return recall_results if return_dict else recall_results.get("recall@1", 0.0)
@@ -202,6 +223,10 @@ class Evaluator:
         """
         Predicts labels using kNN with manifold-aware distance metrics.
         """
+        max_label = bank_labels.max().item()
+        actual_num_classes = max(classes, int(max_label + 1))
+        print(f"DEBUG: Matrix width: {actual_num_classes}, Max label in bank: {max_label}")
+
         if space == Space.HYPERBOLIC:
             manifold = Lorentz(k=hyp_c)
             # Lorentz.dist handles the Minkowski inner product logic internally
@@ -229,18 +254,28 @@ class Evaluator:
         # Since negative distances, 'largest=True' gives the closest points
         sim_weight, sim_indices = sim_matrix.topk(k=min(knn_k, sim_matrix.size(1)), dim=-1, largest=True)
         
+        # ensure bank_labels are on same device and expanded
+        bank_labels_expanded = bank_labels.view(1, -1).expand(queries.size(0), -1)
+
         # Get Labels of neighbors
         # bank_labels: [N], sim_indices: [B, K] -> sim_labels: [B, K]
-        sim_labels = torch.gather(bank_labels.expand(queries.size(0), -1), dim=-1, index=sim_indices)
+        max_idx = bank_labels.size(0) - 1
+        if sim_indices.max() > max_idx:
+            sim_indices = torch.clamp(sim_indices, 0, max_idx)
+            
+        sim_labels = torch.gather(bank_labels_expanded, dim=-1, index=sim_indices)
+
+        # sim_labels = torch.gather(bank_labels.expand(queries.size(0), -1), dim=-1, index=sim_indices)
         
+    
         # Convert distances/similarities into weights
         sim_weight = (sim_weight / knn_t).exp()
         
 
-        one_hot_label = torch.zeros(queries.size(0) * sim_indices.size(1), classes, device=queries.device)
+        one_hot_label = torch.zeros(queries.size(0) * sim_indices.size(1), actual_num_classes, device=queries.device)
         one_hot_label = one_hot_label.scatter(dim=-1, index=sim_labels.view(-1, 1), value=1.0)
         
-        weighted_votes = one_hot_label.view(queries.size(0), -1, classes) * sim_weight.unsqueeze(dim=-1)
+        weighted_votes = one_hot_label.view(queries.size(0), -1, actual_num_classes) * sim_weight.unsqueeze(dim=-1)
         pred_scores = torch.sum(weighted_votes, dim=1)
         
         return pred_scores.argsort(dim=-1, descending=True), pred_scores

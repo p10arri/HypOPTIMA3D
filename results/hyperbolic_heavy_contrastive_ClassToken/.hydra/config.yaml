@@ -1,7 +1,8 @@
 space:
-  name: euclidean
-  thau: 0.1
-  clip_radius: 1.0
+  name: hyperbolic
+  curvature: 0.1
+  clip_radius: 2.3
+  thau: 0.2
 model:
   name: vit3d
   patch_size: 16
@@ -17,37 +18,37 @@ model:
   drop_path_rate: 0.1
   dropout: 0.1
   skip_class_head: false
-  pretrained: true
+  pretrained: false
   checkpoint_path: null
 augmentations:
   name: heavy
   _transform_class_: HeavyTrainTransform
   transform_size: ${hydra:data.image_size}
-experiment: EucViT_Normal_Contrastive_ClassToken
+experiment: hyperbolic_heavy_contrastive_ClassToken
 fast_dev_run: false
 seed: 42
 grad_clip: 1.0
 device: cuda
-training_mode: supervised
+training_mode: contrastive
 data:
   dataset: nineclasses3D
   image_size: 224
-  batch_size: 1
+  batch_size: 32
   num_workers: 4
   pin_memory: true
   num_classes: 9
   sampling:
     name: unique
-    m_per_class: 2
+    m_per_class: 1
 optimizer:
   lr: 0.0001
   weight_decay: 0.05
   warmup_epochs: 15
 trainer:
-  epochs: 200
-  eval_frequency: 2
+  epochs: 100
+  eval_frequency: 5
   early_stopping_patience: 30
-  resume_from: false
+  resume_from: null
 results_path: results/
 model_path: ${hydra:run.dir}/models
 logs_path: ${hydra:run.dir}/logs

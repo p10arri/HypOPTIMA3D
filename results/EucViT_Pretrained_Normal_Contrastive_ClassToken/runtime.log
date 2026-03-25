@@ -1,0 +1,82 @@
+2026-03-23 21:08:29.214 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-23 21:08:29.214 | INFO     | __main__:main:30 - 🚀 Experiment: EucViT_Pretrained_Normal_Contrastive_ClassToken | Mode: SUPERVISED | Space: euclidean
+2026-03-23 21:08:33.154 | INFO     | src.data.sampler:get_sampler:127 - Using standard PyTorch random sampling
+2026-03-23 21:08:38.074 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-23 21:08:40.508 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-23 21:08:40.546 | DEBUG    | src.model.vit3d:load_pretrained:233 - Skipping 2D component: head.weight
+2026-03-23 21:08:40.548 | DEBUG    | src.model.vit3d:load_pretrained:233 - Skipping 2D component: head.bias
+2026-03-23 21:08:40.555 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-23 21:08:40.591 | INFO     | src.losses:get_loss:20 - Using CrossEntropyLoss for Supervised Classification
+2026-03-23 21:08:40.594 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-23 21:08:46.246 | INFO     | src.trainer:__init__:90 - Trainer Initialized | Mode: SUPERVISED | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-23 21:08:46.805 | INFO     | src.trainer:__init__:99 - Trainer initialized for SUPERVISED-EUCLIDEAN-GEOMETRICMODEL
+2026-03-23 21:08:46.805 | INFO     | src.trainer:fit:405 - >>> STARTING STANDARD TRAINING
+2026-03-23 21:39:47.227 | INFO     | src.trainer:evaluate:292 - Epoch 1 | Eval Score (SUPERVISED): 0.2366
+2026-03-23 21:39:47.230 | INFO     | src.trainer:save_checkpoint:167 - New best model found! Score: 0.2366
+2026-03-23 22:11:03.579 | INFO     | src.trainer:evaluate:292 - Epoch 3 | Eval Score (SUPERVISED): 0.2366
+2026-03-23 22:42:01.209 | INFO     | src.trainer:evaluate:292 - Epoch 5 | Eval Score (SUPERVISED): 0.2366
+2026-03-23 23:12:54.026 | INFO     | src.trainer:evaluate:292 - Epoch 7 | Eval Score (SUPERVISED): 0.0948
+2026-03-23 23:43:40.470 | INFO     | src.trainer:evaluate:292 - Epoch 9 | Eval Score (SUPERVISED): 0.2290
+2026-03-24 00:14:28.238 | INFO     | src.trainer:evaluate:292 - Epoch 11 | Eval Score (SUPERVISED): 0.2366
+2026-03-24 00:45:16.138 | INFO     | src.trainer:evaluate:292 - Epoch 13 | Eval Score (SUPERVISED): 0.2366
+2026-03-24 01:16:04.959 | INFO     | src.trainer:evaluate:292 - Epoch 15 | Eval Score (SUPERVISED): 0.2458
+2026-03-24 01:16:04.962 | INFO     | src.trainer:save_checkpoint:167 - New best model found! Score: 0.2458
+2026-03-24 01:46:56.871 | INFO     | src.trainer:evaluate:292 - Epoch 17 | Eval Score (SUPERVISED): 0.2324
+2026-03-24 02:18:01.640 | INFO     | src.trainer:evaluate:292 - Epoch 19 | Eval Score (SUPERVISED): 0.2299
+2026-03-24 02:48:47.996 | INFO     | src.trainer:evaluate:292 - Epoch 21 | Eval Score (SUPERVISED): 0.2341
+2026-03-24 03:19:43.517 | INFO     | src.trainer:evaluate:292 - Epoch 23 | Eval Score (SUPERVISED): 0.2366
+2026-03-24 03:50:40.444 | INFO     | src.trainer:evaluate:292 - Epoch 25 | Eval Score (SUPERVISED): 0.2273
+2026-03-24 04:22:00.527 | INFO     | src.trainer:evaluate:292 - Epoch 27 | Eval Score (SUPERVISED): 0.2349
+2026-03-24 04:53:27.329 | INFO     | src.trainer:evaluate:292 - Epoch 29 | Eval Score (SUPERVISED): 0.2206
+2026-03-24 05:24:15.149 | INFO     | src.trainer:evaluate:292 - Epoch 31 | Eval Score (SUPERVISED): 0.2332
+2026-03-24 05:55:08.387 | INFO     | src.trainer:evaluate:292 - Epoch 33 | Eval Score (SUPERVISED): 0.2408
+2026-03-24 06:26:01.988 | INFO     | src.trainer:evaluate:292 - Epoch 35 | Eval Score (SUPERVISED): 0.2055
+2026-03-24 06:57:01.424 | INFO     | src.trainer:evaluate:292 - Epoch 37 | Eval Score (SUPERVISED): 0.2567
+2026-03-24 06:57:01.431 | INFO     | src.trainer:save_checkpoint:167 - New best model found! Score: 0.2567
+2026-03-24 07:28:07.344 | INFO     | src.trainer:evaluate:292 - Epoch 39 | Eval Score (SUPERVISED): 0.2433
+2026-03-24 07:59:08.537 | INFO     | src.trainer:evaluate:292 - Epoch 41 | Eval Score (SUPERVISED): 0.2500
+2026-03-24 08:30:06.421 | INFO     | src.trainer:evaluate:292 - Epoch 43 | Eval Score (SUPERVISED): 0.2584
+2026-03-24 08:30:06.424 | INFO     | src.trainer:save_checkpoint:167 - New best model found! Score: 0.2584
+2026-03-24 09:01:29.498 | INFO     | src.trainer:evaluate:292 - Epoch 45 | Eval Score (SUPERVISED): 0.2626
+2026-03-24 09:01:29.502 | INFO     | src.trainer:save_checkpoint:167 - New best model found! Score: 0.2626
+2026-03-24 09:32:27.400 | INFO     | src.trainer:evaluate:292 - Epoch 47 | Eval Score (SUPERVISED): 0.2559
+2026-03-24 10:03:21.095 | INFO     | src.trainer:evaluate:292 - Epoch 49 | Eval Score (SUPERVISED): 0.2324
+2026-03-24 10:34:18.085 | INFO     | src.trainer:evaluate:292 - Epoch 51 | Eval Score (SUPERVISED): 0.2181
+2026-03-24 11:05:17.661 | INFO     | src.trainer:evaluate:292 - Epoch 53 | Eval Score (SUPERVISED): 0.2752
+2026-03-24 11:05:17.751 | INFO     | src.trainer:save_checkpoint:167 - New best model found! Score: 0.2752
+2026-03-24 11:36:28.980 | INFO     | src.trainer:evaluate:292 - Epoch 55 | Eval Score (SUPERVISED): 0.2433
+2026-03-24 12:07:32.516 | INFO     | src.trainer:evaluate:292 - Epoch 57 | Eval Score (SUPERVISED): 0.2307
+2026-03-24 12:38:42.984 | INFO     | src.trainer:evaluate:292 - Epoch 59 | Eval Score (SUPERVISED): 0.3087
+2026-03-24 12:38:42.987 | INFO     | src.trainer:save_checkpoint:167 - New best model found! Score: 0.3087
+2026-03-24 13:09:53.426 | INFO     | src.trainer:evaluate:292 - Epoch 61 | Eval Score (SUPERVISED): 0.2601
+2026-03-24 13:40:53.468 | INFO     | src.trainer:evaluate:292 - Epoch 63 | Eval Score (SUPERVISED): 0.2391
+2026-03-24 14:11:45.250 | INFO     | src.trainer:evaluate:292 - Epoch 65 | Eval Score (SUPERVISED): 0.2450
+2026-03-24 14:48:07.438 | INFO     | src.trainer:evaluate:292 - Epoch 67 | Eval Score (SUPERVISED): 0.2408
+2026-03-24 15:24:53.442 | INFO     | src.trainer:evaluate:292 - Epoch 69 | Eval Score (SUPERVISED): 0.2693
+2026-03-24 16:00:04.417 | INFO     | src.trainer:evaluate:292 - Epoch 71 | Eval Score (SUPERVISED): 0.2492
+2026-03-24 16:32:18.284 | INFO     | src.trainer:evaluate:292 - Epoch 73 | Eval Score (SUPERVISED): 0.2441
+2026-03-24 17:04:29.309 | INFO     | src.trainer:evaluate:292 - Epoch 75 | Eval Score (SUPERVISED): 0.2265
+2026-03-24 17:36:42.555 | INFO     | src.trainer:evaluate:292 - Epoch 77 | Eval Score (SUPERVISED): 0.2584
+2026-03-24 18:08:53.065 | INFO     | src.trainer:evaluate:292 - Epoch 79 | Eval Score (SUPERVISED): 0.2508
+2026-03-24 18:40:45.900 | INFO     | src.trainer:evaluate:292 - Epoch 81 | Eval Score (SUPERVISED): 0.2097
+2026-03-24 19:12:20.605 | INFO     | src.trainer:evaluate:292 - Epoch 83 | Eval Score (SUPERVISED): 0.2357
+2026-03-24 19:43:51.344 | INFO     | src.trainer:evaluate:292 - Epoch 85 | Eval Score (SUPERVISED): 0.1896
+2026-03-24 20:15:26.653 | INFO     | src.trainer:evaluate:292 - Epoch 87 | Eval Score (SUPERVISED): 0.2122
+2026-03-24 20:46:53.415 | INFO     | src.trainer:evaluate:292 - Epoch 89 | Eval Score (SUPERVISED): 0.2257
+2026-03-24 21:18:25.531 | INFO     | src.trainer:evaluate:292 - Epoch 91 | Eval Score (SUPERVISED): 0.2466
+2026-03-24 21:49:33.684 | INFO     | src.trainer:evaluate:292 - Epoch 93 | Eval Score (SUPERVISED): 0.2257
+2026-03-24 22:20:32.144 | INFO     | src.trainer:evaluate:292 - Epoch 95 | Eval Score (SUPERVISED): 0.2567
+2026-03-24 22:51:29.865 | INFO     | src.trainer:evaluate:292 - Epoch 97 | Eval Score (SUPERVISED): 0.2391
+2026-03-24 23:22:23.402 | INFO     | src.trainer:evaluate:292 - Epoch 99 | Eval Score (SUPERVISED): 0.2349
+2026-03-24 23:53:20.492 | INFO     | src.trainer:evaluate:292 - Epoch 101 | Eval Score (SUPERVISED): 0.2651
+2026-03-25 00:24:17.413 | INFO     | src.trainer:evaluate:292 - Epoch 103 | Eval Score (SUPERVISED): 0.2534
+2026-03-25 00:55:20.482 | INFO     | src.trainer:evaluate:292 - Epoch 105 | Eval Score (SUPERVISED): 0.2735
+2026-03-25 01:26:21.531 | INFO     | src.trainer:evaluate:292 - Epoch 107 | Eval Score (SUPERVISED): 0.2609
+2026-03-25 01:57:18.537 | INFO     | src.trainer:evaluate:292 - Epoch 109 | Eval Score (SUPERVISED): 0.2500
+2026-03-25 02:28:14.138 | INFO     | src.trainer:evaluate:292 - Epoch 111 | Eval Score (SUPERVISED): 0.2802
+2026-03-25 02:59:07.781 | INFO     | src.trainer:evaluate:292 - Epoch 113 | Eval Score (SUPERVISED): 0.2483
+2026-03-25 03:30:06.159 | INFO     | src.trainer:evaluate:292 - Epoch 115 | Eval Score (SUPERVISED): 0.2919
+2026-03-25 04:01:04.993 | INFO     | src.trainer:evaluate:292 - Epoch 117 | Eval Score (SUPERVISED): 0.2911
+2026-03-25 04:32:04.393 | INFO     | src.trainer:evaluate:292 - Epoch 119 | Eval Score (SUPERVISED): 0.2424
+2026-03-25 04:32:12.521 | WARNING  | src.trainer:train:374 - Early stopping triggered at epoch 119
+2026-03-25 04:32:12.522 | INFO     | src.trainer:train:378 - Training Stage full_training Completed.

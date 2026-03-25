@@ -6,7 +6,7 @@ set -e
 ### ----------------- RUN ONE EXPERIMENT -----------------
 echo "🚀 Starting One Experiment Suite..."
 
-python main.py experiment=EucViT_Normal_Contrastive_ClassToken \
+python main.py experiment=EucViT_Pretrained_Normal_Contrastive_ClassToken \
     ++fast_dev_run=False \
     ++trainer.resume_from=False\
     space=euclidean \

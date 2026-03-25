@@ -41,3 +41,16 @@
 2026-03-23 20:26:02.846 | INFO     | src.trainer:evaluate:283 - Epoch 61 | Eval Score (CONTRASTIVE): 0.0000
 2026-03-23 20:26:08.923 | WARNING  | src.trainer:train:365 - Early stopping triggered at epoch 61
 2026-03-23 20:26:08.924 | INFO     | src.trainer:train:369 - Training Stage full_training Completed.
+2026-03-23 21:07:20.307 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-23 21:07:20.307 | INFO     | __main__:main:30 - 🚀 Experiment: EucViT_Normal_Contrastive_ClassToken | Mode: SUPERVISED | Space: euclidean
+2026-03-23 21:07:24.452 | INFO     | src.data.sampler:get_sampler:127 - Using standard PyTorch random sampling
+2026-03-23 21:07:29.618 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-23 21:07:40.298 | INFO     | src.model.vit3d:load_pretrained:228 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-23 21:07:40.940 | DEBUG    | src.model.vit3d:load_pretrained:233 - Skipping 2D component: head.weight
+2026-03-23 21:07:40.941 | DEBUG    | src.model.vit3d:load_pretrained:233 - Skipping 2D component: head.bias
+2026-03-23 21:07:40.946 | INFO     | src.model.vit3d:load_pretrained:248 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-23 21:07:40.958 | INFO     | src.losses:get_loss:20 - Using CrossEntropyLoss for Supervised Classification
+2026-03-23 21:07:40.961 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-23 21:07:48.545 | INFO     | src.trainer:__init__:90 - Trainer Initialized | Mode: SUPERVISED | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-23 21:07:49.707 | INFO     | src.trainer:__init__:99 - Trainer initialized for SUPERVISED-EUCLIDEAN-GEOMETRICMODEL
+2026-03-23 21:07:49.708 | INFO     | src.trainer:fit:405 - >>> STARTING STANDARD TRAINING

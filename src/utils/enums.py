@@ -15,7 +15,7 @@ class TrainingMode(Enum):
     CONTRASTIVE = "contrastive"       
     # Siamese SSL: 2 views -> embeddings -> Cosine Similarity
     SIMSIAM = "simsiam"
-
+    
 class DatasetSplit(Enum):
     TRAIN = "train"
     VAL = "val"

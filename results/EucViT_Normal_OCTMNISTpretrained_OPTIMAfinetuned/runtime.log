@@ -1,0 +1,17 @@
+2026-03-25 18:51:49.789 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:51:49.789 | INFO     | __main__:main:34 - 🚀 PRETRAINING (OCTMNIST) + FINETUNING (OPTIMA) 
+ Experiment: EucViT_Normal_OCTMNISTpretrained_OPTIMAfinetuned| Space: euclidean
+2026-03-25 18:51:49.790 | INFO     | __main__:main:39 - Pretraining Stage...
+2026-03-25 18:51:50.648 | INFO     | __main__:main:73 - Found 4 unique classes in OCTMNIST: {'0': 'choroidal neovascularization', '1': 'diabetic macular edema', '2': 'drusen', '3': 'normal'}
+2026-03-25 18:51:50.648 | INFO     | src.data.sampler:get_sampler:126 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 18:51:50.665 | WARNING  | src.data.sampler:get_sampler:139 - Sampler overriding config batch_size! New batch_size: 8 (4 classes found in dataset * 2 per class)
+2026-03-25 18:51:52.217 | INFO     | src.model.vit3d:load_pretrained:209 - No checkpoint provided. Fetching 2D ImageNet weights (timm vit_base_patch16_224)...
+2026-03-25 18:51:53.464 | INFO     | src.model.vit3d:load_pretrained:236 - Adapting patch_embed.proj.weight: Converting 3-channel RGB to 1-channel Grayscale.
+2026-03-25 18:51:53.502 | DEBUG    | src.model.vit3d:load_pretrained:229 - Skipping head.weight: Not present in ViT3D.
+2026-03-25 18:51:53.503 | DEBUG    | src.model.vit3d:load_pretrained:229 - Skipping head.bias: Not present in ViT3D.
+2026-03-25 18:51:53.507 | INFO     | src.model.vit3d:load_pretrained:256 - Successfully loaded 150 parameters from timm (2D) source.
+2026-03-25 18:51:53.550 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for euclidean space
+2026-03-25 18:51:53.552 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 18:52:03.488 | INFO     | src.trainer:__init__:97 - Trainer Initialized | Mode: CONTRASTIVE | Space: EUCLIDEAN (c=0.0) | Model: GeometricModel
+2026-03-25 18:52:04.361 | INFO     | src.trainer:__init__:106 - Trainer initialized for CONTRASTIVE-EUCLIDEAN-GEOMETRICMODEL
+2026-03-25 18:52:04.362 | INFO     | src.trainer:fit:423 - >>> STARTING STANDARD TRAINING

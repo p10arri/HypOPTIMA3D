@@ -213,7 +213,15 @@ class ViT3D(nn.Module):
         else:
             logger.info(f"Loading ViT3D weights from local checkpoint: {checkpoint_path}")
             checkpoint = torch.load(checkpoint_path, map_location='cpu')
-            state_dict = checkpoint.get('model', checkpoint.get('state_dict', checkpoint))
+            state_dict = checkpoint.get('model_state_dict', 
+                         checkpoint.get('state_dict', 
+                         checkpoint.get('model', checkpoint)))
+            new_state_dict = {}
+            for k, v in state_dict.items():
+                name = k.replace('backbone.', '') # Remove wrapper prefix
+                new_state_dict[name] = v
+            state_dict = new_state_dict
+            
             is_3d_checkpoint = True
 
         for name, param in state_dict.items():

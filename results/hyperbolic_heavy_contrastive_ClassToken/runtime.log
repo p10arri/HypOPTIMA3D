@@ -1,0 +1,12 @@
+2026-03-25 07:29:27.502 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 07:29:27.502 | INFO     | __main__:main:30 - 🚀 Experiment: hyperbolic_heavy_contrastive_ClassToken | Mode: CONTRASTIVE | Space: hyperbolic
+2026-03-25 07:29:31.387 | INFO     | src.data.sampler:get_sampler:104 - Assigning AllClassesKSampler for CONTRASTIVE mode
+2026-03-25 07:29:31.394 | WARNING  | src.data.sampler:get_sampler:123 - Sampler overriding config batch_size! New batch_size: 9 (9 classes * 1 per class)
+2026-03-25 07:29:36.031 | INFO     | src.losses:get_loss:24 - Using PairwiseCELoss for hyperbolic space
+2026-03-25 07:29:36.035 | INFO     | src.trainer:seed_all:32 - Set random seed to 42
+2026-03-25 07:29:45.494 | INFO     | src.trainer:__init__:90 - Trainer Initialized | Mode: CONTRASTIVE | Space: HYPERBOLIC (c=0.1) | Model: GeometricModel
+2026-03-25 07:29:46.174 | INFO     | src.trainer:__init__:99 - Trainer initialized for CONTRASTIVE-HYPERBOLIC-GEOMETRICMODEL
+2026-03-25 07:29:46.175 | INFO     | src.trainer:fit:405 - >>> STARTING STANDARD TRAINING
+2026-03-25 10:49:27.074 | INFO     | src.trainer:evaluate:292 - Epoch 4 | Eval Score (CONTRASTIVE): 0.0000
+2026-03-25 10:49:27.077 | INFO     | src.trainer:save_checkpoint:167 - New best model found! Score: 0.0000
+2026-03-25 14:09:12.601 | INFO     | src.trainer:evaluate:292 - Epoch 9 | Eval Score (CONTRASTIVE): 0.0000

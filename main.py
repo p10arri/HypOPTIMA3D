@@ -14,7 +14,7 @@ from src.data.sampler import SamplerFactory
 from src.trainer import Trainer, seed_all
 from src.model.builder import get_model
 from src.losses import get_loss
-from src.utils.enums import Space, TrainingMode, Augmentation, NineClassesLabel
+from src.utils.enums import Space, TrainingMode, NineClassesLabel
 
 @hydra.main(config_path="config", config_name="config.yaml", version_base="1.3")
 def main(cfg: DictConfig):
